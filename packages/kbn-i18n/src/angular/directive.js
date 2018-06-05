@@ -17,10 +17,27 @@
  * under the License.
  */
 
-import * as angular from './angular';
-import * as react from './react';
-
-export const AngularI18n = angular;
-export const ReactI18n = react;
-
-export { I18n, i18n } from './i18n';
+export function i18nDirective(i18n) {
+  return {
+    restrict: 'A',
+    scope: {
+      id: '@i18nId',
+      defaultMessage: '@i18nDefaultMessage',
+      values: '=i18nValues',
+    },
+    link: function($scope, $element) {
+      $scope.$watchGroup(['id', 'defaultMessage', 'values'], function([
+        id,
+        defaultMessage = '',
+        values = {},
+      ]) {
+        $element.html(
+          i18n(id, {
+            values,
+            defaultMessage,
+          })
+        );
+      });
+    },
+  };
+}

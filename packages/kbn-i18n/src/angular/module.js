@@ -17,5 +17,14 @@
  * under the License.
  */
 
-export * from 'react-intl';
-export { I18nProvider } from './i18n_provider';
+import angular from 'angular';
+
+import { i18nProvider } from './provider';
+import { i18nFilter } from './filter';
+import { i18nDirective } from './directive';
+
+export const i18nModule = angular
+  .module('kbn-i18n', [])
+  .provider('i18n', i18nProvider)
+  .filter('i18n', i18nFilter)
+  .directive('i18nId', i18nDirective);

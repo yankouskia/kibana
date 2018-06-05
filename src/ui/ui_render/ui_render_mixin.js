@@ -17,11 +17,11 @@
  * under the License.
  */
 
-import { defaults, get } from 'lodash';
+import { defaults } from 'lodash';
 import { props, reduce as reduceAsync } from 'bluebird';
 import Boom from 'boom';
 import { resolve } from 'path';
-import I18n from '@kbn/i18n/src/core';
+import { I18n } from '@kbn/i18n/src/i18n';
 import { AppBootstrap } from './bootstrap';
 
 export function uiRenderMixin(kbnServer, server, config) {
@@ -150,7 +150,7 @@ export function uiRenderMixin(kbnServer, server, config) {
           injectedVarsOverrides
         }),
         bundlePath: `${config.get('server.basePath')}/bundles`,
-        i18n: i18n.translate.bind(i18n),
+        i18n: (id, options) => i18n.translate(id, options),
       });
     } catch (err) {
       reply(err);

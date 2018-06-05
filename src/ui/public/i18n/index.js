@@ -17,6 +17,17 @@
  * under the License.
  */
 
-import './i18n.servise';
-import './i18n.directive';
-import './i18n.filter';
+import { AngularI18n, i18n } from '@kbn/i18n';
+
+import { uiModules } from 'ui/modules';
+import { metadata } from 'ui/metadata';
+
+if (metadata.translations) {
+  i18n.addMessages(metadata.translations);
+
+  if (metadata.translations.locale) {
+    i18n.setLocale(metadata.translations.locale);
+  }
+}
+
+uiModules.get('i18n', [AngularI18n.i18nModule.name]);

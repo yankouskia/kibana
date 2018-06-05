@@ -17,13 +17,29 @@
  * under the License.
  */
 
-import { uiModules } from 'ui/modules';
+import { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
-uiModules.get('i18n').filter('i18n', function(i18n) {
-  return function(id, { defaultMessage = '', values = {} } = {}) {
-    return i18n(id, {
-      values,
-      defaultMessage,
-    });
+/**
+ * Provides intl context to a child component using React render callback pattern
+ * @example
+ * <I18nContext>
+ *   {intl => (
+ *     <input
+ *       placeholder={intl.formatMessage({
+           id: 'my-id',
+           defaultMessage: 'my default message',
+         })}
+ *     />
+ *   )}
+ * </I18nContext>
+ */
+export class I18nContext extends PureComponent {
+  static propTypes = {
+    children: PropTypes.func.isRequired,
   };
-});
+
+  render() {
+    return this.props.children(this.context.intl);
+  }
+}

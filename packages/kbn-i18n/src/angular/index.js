@@ -17,29 +17,7 @@
  * under the License.
  */
 
-import { uiModules } from 'ui/modules';
-
-uiModules.get('i18n').directive('i18nId', function(i18n) {
-  return {
-    restrict: 'A',
-    scope: {
-      id: '@i18nId',
-      defaultMessage: '@i18nDefaultMessage',
-      values: '=i18nValues',
-    },
-    link: function($scope, $element) {
-      $scope.$watchGroup(['id', 'defaultMessage', 'values'], function([
-        id,
-        defaultMessage = '',
-        values = {},
-      ]) {
-        $element.html(
-          i18n(id, {
-            values,
-            defaultMessage,
-          })
-        );
-      });
-    },
-  };
-});
+export { i18nProvider } from './provider';
+export { i18nFilter } from './filter';
+export { i18nDirective } from './directive';
+export { i18nModule } from './module';

@@ -17,11 +17,9 @@
  * under the License.
  */
 
-import { uiModules } from 'ui/modules';
+import { i18n } from '../i18n';
 
-import i18n from '../i18n';
-
-uiModules.get('i18n').provider('i18n', function() {
+export function i18nProvider() {
   this.addMessages = function(messages, locale) {
     i18n.addMessages(messages, locale);
   };
@@ -46,15 +44,19 @@ uiModules.get('i18n').provider('i18n', function() {
     return i18n.getDefaultLocale();
   };
 
-  this.defineFormats = function(formats) {
-    i18n.defineFormats(formats);
+  this.setFormats = function(formats) {
+    i18n.setFormats(formats);
   };
 
   this.getFormats = function() {
     return i18n.getFormats();
   };
 
+  this.getRegisteredLocales = function() {
+    return i18n.getRegisteredLocales();
+  };
+
   this.$get = function() {
     return i18n.translate.bind(i18n);
   };
-});
+}

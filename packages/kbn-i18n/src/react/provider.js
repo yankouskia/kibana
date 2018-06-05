@@ -21,8 +21,13 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 
-import i18n from '../i18n';
+import { i18n } from '../i18n';
 
+/**
+ * The library uses the provider pattern to scope an i18n context to a tree
+ * of components. This component is used to setup the i18n context for a tree.
+ * IntlProvider should wrap react app's root component (inside each react render method).
+ */
 export class I18nProvider extends PureComponent {
   static propTypes = {
     children: PropTypes.object,

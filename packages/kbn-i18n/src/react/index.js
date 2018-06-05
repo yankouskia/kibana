@@ -17,10 +17,16 @@
  * under the License.
  */
 
-import * as angular from './angular';
-import * as react from './react';
+export {
+  intlShape,
+  FormattedDate,
+  FormattedTime,
+  FormattedRelative,
+  FormattedNumber,
+  FormattedPlural,
+  FormattedMessage,
+  FormattedHTMLMessage,
+} from 'react-intl';
 
-export const AngularI18n = angular;
-export const ReactI18n = react;
-
-export { I18n, i18n } from './i18n';
+export { I18nProvider } from './provider';
+export { I18nContext } from './context';
