@@ -38,7 +38,12 @@ import {
   EuiCallOut,
 } from '@elastic/eui';
 
-export class StepIndexPattern extends Component {
+import {
+  injectIntl,
+  FormattedMessage
+} from '@kbn/i18n';
+
+class StepIndexPatternComponent extends Component {
   static propTypes = {
     allIndices: PropTypes.array.isRequired,
     isIncludingSystemIndices: PropTypes.bool.isRequired,
@@ -46,6 +51,7 @@ export class StepIndexPattern extends Component {
     savedObjectsClient: PropTypes.object.isRequired,
     goToNextStep: PropTypes.func.isRequired,
     initialQuery: PropTypes.string,
+    intl: PropTypes.object
   }
 
   static defaultProps = {
@@ -205,11 +211,19 @@ export class StepIndexPattern extends Component {
 
     return (
       <EuiCallOut
-        title="Whoops!"
+        title={<FormattedMessage
+          id="management.indices.indexPattern.label.whoops"
+          defaultMessage={`Whoops!`}
+        />}
         iconType="help"
         color="warning"
       >
-        <p>There&apos;s already an index pattern called `{query}`</p>
+        <p><FormattedMessage
+          id="management.indices.indexPattern.label.patternExists"
+          defaultMessage={`There{apostrophe}s already an index pattern called \`{query}\``}
+          values={{ apostrophe: <span>&apos;</span>, query }}
+        />
+        </p>
       </EuiCallOut>
     );
   }
@@ -227,7 +241,12 @@ export class StepIndexPattern extends Component {
       containsErrors = true;
     }
     else if (!containsInvalidCharacters(query, ILLEGAL_CHARACTERS)) {
-      errors.push(`An index pattern cannot contain spaces or the characters: ${characterList}`);
+      errors.push(this.props.intl.formatMessage({
+        id: 'management.indices.indexPattern.error.invalidCharacters',
+        defaultMessage: `An index pattern cannot contain spaces or the characters: {characterList}`
+      },
+      { characterList }
+      ));
       containsErrors = true;
     }
 
@@ -273,3 +292,5 @@ export class StepIndexPattern extends Component {
     );
   }
 }
+
+export const StepIndexPattern = injectIntl(StepIndexPatternComponent);

@@ -27,6 +27,8 @@ import {
   EuiLoadingSpinner,
 } from '@elastic/eui';
 
+import { FormattedMessage } from '@kbn/i18n';
+
 export const LoadingIndices = ({ ...rest }) => (
   <EuiFlexGroup
     justifyContent="center"
@@ -40,13 +42,19 @@ export const LoadingIndices = ({ ...rest }) => (
     <EuiFlexItem grow={false}>
       <EuiText>
         <EuiTextColor color="subdued">
-          Looking for matching indices...
+          <FormattedMessage
+            id="management.indices.indexPattern.loading.header"
+            defaultMessage={`Looking for matching indices...`}
+          />
         </EuiTextColor>
       </EuiText>
 
       <EuiText size="s" style={{ textAlign: 'center' }}>
         <EuiTextColor color="subdued">
-          Just a sec...
+          <FormattedMessage
+            id="management.indices.indexPattern.loading.title"
+            defaultMessage={`Just a sec...`}
+          />
         </EuiTextColor>
       </EuiText>
     </EuiFlexItem>

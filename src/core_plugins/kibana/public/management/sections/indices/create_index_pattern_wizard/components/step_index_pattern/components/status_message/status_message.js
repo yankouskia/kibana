@@ -25,6 +25,8 @@ import {
   EuiIcon,
 } from '@elastic/eui';
 
+import { FormattedMessage } from '@kbn/i18n';
+
 export const StatusMessage = ({
   matchedIndices: {
     allIndices = [],
@@ -45,14 +47,28 @@ export const StatusMessage = ({
     if (allIndices.length > 1) {
       statusMessage = (
         <span>
-          Your index pattern can match any of your <strong>{allIndices.length} indices</strong>, below.
+          <FormattedMessage
+            id="management.indices.indexPattern.status.match"
+            defaultMessage={`Your index pattern can match any of your {allIndices}, below.`}
+            values={{ allIndices: (
+              <strong><FormattedMessage
+                id="management.indices.indexPattern.status.match.count"
+                defaultMessage={`{allIndicesLength, plural, one {# index} other {# indices}}`}
+                values={{ allIndicesLength: allIndices.length }}
+              />
+              </strong>) }}
+          />
         </span>
       );
     }
     else if (!isIncludingSystemIndices) {
       statusMessage = (
         <span>
-          No Elasticsearch indices match your pattern. To view the matching system indices, toggle the switch in the upper right.
+          <FormattedMessage
+            id="management.indices.indexPattern.status.notMatchWithPrompt"
+            defaultMessage={`No Elasticsearch indices match your pattern.
+            To view the matching system indices, toggle the switch in the upper right.`}
+          />
         </span>
       );
     }
@@ -61,6 +77,10 @@ export const StatusMessage = ({
       statusMessage = (
         <span>
           No Elasticsearch indices match your pattern.
+          <FormattedMessage
+            id="management.indices.indexPattern.status.notMatch"
+            defaultMessage={`No Elasticsearch indices match your pattern.`}
+          />
         </span>
       );
     }
@@ -71,9 +91,25 @@ export const StatusMessage = ({
     statusMessage = (
       <span>
         &nbsp;
-        <strong>Success!</strong>
+        <strong>
+          <FormattedMessage
+            id="management.indices.indexPattern.status.success"
+            defaultMessage={`Success!`}
+          />
+        </strong>
         &nbsp;
-        Your index pattern matches <strong>{exactMatchedIndices.length} {exactMatchedIndices.length > 1 ? 'indices' : 'index'}</strong>.
+        <FormattedMessage
+          id="management.indices.indexPattern.status.success.description"
+          defaultMessage={`Your index pattern matches {exactMatchedIndices}.`}
+          values={{
+            exactMatchedIndices: (<strong><FormattedMessage
+              id="management.indices.indexPattern.status.success.description.index"
+              defaultMessage={`{indicesLength, plural, one {# index} other {# indices} }`}
+              values={{ indicesLength: exactMatchedIndices.length }}
+            />
+            </strong>)
+          }}
+        />
       </span>
     );
   }
@@ -82,11 +118,23 @@ export const StatusMessage = ({
     statusColor = 'default';
     statusMessage = (
       <span>
-        Your index pattern doesn&apos;t match any indices, but you have&nbsp;
+        <FormattedMessage
+          id="management.indices.indexPattern.status.partialMatch.label1"
+          defaultMessage={`Your index pattern doesn{apostrophe}t match any indices, but you have{space}`}
+          values={{ apostrophe: <span>&apos;</span>, space: <span>&nbsp;</span> }}
+        />
         <strong>
-          {partialMatchedIndices.length} {partialMatchedIndices.length > 1 ? 'indices ' : 'index '}
+          <FormattedMessage
+            id="management.indices.indexPattern.status.partialMatch.label2"
+            defaultMessage={`{matchedIndicesLength, plural, one {# index} other {# indices}} `}
+            values={{ matchedIndicesLength: partialMatchedIndices.length }}
+          />
         </strong>
-        which {partialMatchedIndices.length > 1 ? 'look' : 'looks'} similar.
+        <FormattedMessage
+          id="management.indices.indexPattern.status.partialMatch.label3"
+          defaultMessage={`which {matchedIndicesLength, plural, one {# looks} other {# look}} similar.`}
+          values={{ matchedIndicesLength: partialMatchedIndices.length }}
+        />
       </span>
     );
   }
