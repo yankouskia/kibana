@@ -30,7 +30,13 @@ import {
   EuiFieldText,
 } from '@elastic/eui';
 
-export const Header = ({
+import {
+  injectIntl,
+  FormattedMessage
+} from '@kbn/i18n';
+
+const HeaderComponent = ({
+  intl,
   isInputInvalid,
   errors,
   characterList,
@@ -43,7 +49,10 @@ export const Header = ({
   <div {...rest}>
     <EuiTitle size="s">
       <h2>
-        Step 1 of 2: Define index pattern
+        <FormattedMessage
+          id="management.indices.indexPattern.header"
+          defaultMessage={`Step 1 of 2: Define index pattern`}
+        />
       </h2>
     </EuiTitle>
     <EuiSpacer size="m"/>
@@ -53,19 +62,34 @@ export const Header = ({
           isInvalid={isInputInvalid}
         >
           <EuiFormRow
-            label="Index pattern"
+            label={<FormattedMessage
+              id="management.indices.indexPattern.label"
+              defaultMessage={`Index pattern`}
+            />}
             isInvalid={isInputInvalid}
             error={errors}
             helpText={
               <div>
-                <p>You can use a <strong>*</strong> as a wildcard in your index pattern.</p>
-                <p>You can&apos;t use spaces or the characters <strong>{characterList}</strong>.</p>
+                <p>
+                  <FormattedMessage
+                    id="management.indices.indexPattern.description.allow"
+                    defaultMessage={`You can use a {asterisk} as a wildcard in your index pattern.`}
+                    values={{ asterisk: <strong>*</strong> }}
+                  />
+                </p>
+                <p>
+                  <FormattedMessage
+                    id="management.indices.indexPattern.description.disallow"
+                    defaultMessage={`You can{apostrophe}t use spaces or the characters {characterList}.`}
+                    values={{ apostrophe: <span>&apos;</span>, characterList: <strong>{characterList}</strong> }}
+                  />
+                </p>
               </div>
             }
           >
             <EuiFieldText
               name="indexPattern"
-              placeholder="index-name-*"
+              placeholder={intl.formatMessage({ id: 'management.indices.indexPattern.placeholder', defaultMessage: 'index-name-*' })}
               value={query}
               isInvalid={isInputInvalid}
               onChange={onQueryChanged}
@@ -81,9 +105,14 @@ export const Header = ({
           isDisabled={isNextStepDisabled}
           data-test-subj="createIndexPatternGoToStep2Button"
         >
-          Next step
+          <FormattedMessage
+            id="management.indices.indexPattern.button.nextStep"
+            defaultMessage={`Next step`}
+          />
         </EuiButton>
       </EuiFlexItem>
     </EuiFlexGroup>
   </div>
 );
+
+export const Header = injectIntl(HeaderComponent);
