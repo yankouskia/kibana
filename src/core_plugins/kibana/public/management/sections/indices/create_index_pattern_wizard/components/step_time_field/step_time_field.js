@@ -35,6 +35,10 @@ import {
   EuiLoadingSpinner,
 } from '@elastic/eui';
 
+import { ReactI18n } from '@kbn/i18n';
+
+const { FormattedMessage } = ReactI18n;
+
 export class StepTimeField extends Component {
   static propTypes = {
     indexPattern: PropTypes.string.isRequired,
@@ -121,7 +125,12 @@ export class StepTimeField extends Component {
               <EuiLoadingSpinner/>
             </EuiFlexItem>
             <EuiFlexItem grow={false}>
-              <EuiText>Creating index pattern...</EuiText>
+              <EuiText>
+                <FormattedMessage
+                  id="management.indices.createIndexPattern.stepTime.creating"
+                  defaultMessage="Creating index pattern..."
+                />
+              </EuiText>
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPanel>

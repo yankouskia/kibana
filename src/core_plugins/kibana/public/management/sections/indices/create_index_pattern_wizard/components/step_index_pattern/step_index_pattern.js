@@ -210,14 +210,14 @@ export class StepIndexPattern extends Component {
     return (
       <EuiCallOut
         title={<FormattedMessage
-          id="management.indices.indexPattern.label.whoops"
+          id="management.indices.createIndexPattern.step.label.whoops"
           defaultMessage="Whoops!"
         />}
         iconType="help"
         color="warning"
       >
         <p><FormattedMessage
-          id="management.indices.indexPattern.label.patternExists"
+          id="management.indices.createIndexPattern.step.label.patternExists"
           defaultMessage="There{apostrophe}s already an index pattern called `{query}`"
           values={{ apostrophe: <span>&apos;</span>, query }}
         />
@@ -240,7 +240,7 @@ export class StepIndexPattern extends Component {
     }
     else if (!containsInvalidCharacters(query, ILLEGAL_CHARACTERS)) {
       errors.push(intl.formatMessage({
-        id: 'management.indices.indexPattern.error.invalidCharacters',
+        id: 'management.indices.createIndexPattern.step.error.invalidCharacters',
         defaultMessage: 'An index pattern cannot contain spaces or the characters: {characterList}'
       }, { characterList }));
       containsErrors = true;

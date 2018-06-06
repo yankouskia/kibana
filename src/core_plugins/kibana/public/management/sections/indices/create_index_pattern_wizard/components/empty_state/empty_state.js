@@ -32,6 +32,10 @@ import {
   EuiButton,
 } from '@elastic/eui';
 
+import { ReactI18n } from '@kbn/i18n';
+
+const { FormattedMessage } = ReactI18n;
+
 export const EmptyState = ({
   onRefresh,
 }) => (
@@ -40,26 +44,45 @@ export const EmptyState = ({
       <EuiFlexItem grow={false}>
         <EuiTitle>
           <EuiTextColor color="subdued">
-            <h2 style={{ textAlign: 'center' }}>Couldn&apos;t find any Elasticsearch data</h2>
+            <h2 style={{ textAlign: 'center' }}>
+              <FormattedMessage
+                id="management.indices.createIndexPattern.emptyState.noData"
+                defaultMessage="Couldn{apostrophe}t find any Elasticsearch data"
+                values={{ apostrophe: <span>&apos;</span> }}
+              />
+            </h2>
           </EuiTextColor>
         </EuiTitle>
         <EuiSpacer size="s"/>
         <EuiText>
           <p>
             <EuiTextColor color="subdued">
-              You&apos;ll need to index some data into Elasticsearch before you can create an index pattern.
+              <FormattedMessage
+                id="management.indices.createIndexPattern.emptyState.needToIndex"
+                defaultMessage="You{apostrophe}ll need to index some data into Elasticsearch before you can create an index pattern."
+                values={{ apostrophe: <span>&apos;</span> }}
+              />
             </EuiTextColor>
             &nbsp;
             <EuiLink
               href="#/home/tutorial_directory"
             >
-              Learn how
+              <FormattedMessage
+                id="management.indices.createIndexPattern.emptyState.learn"
+                defaultMessage="Learn how"
+              />
             </EuiLink>
-            {' or '}
+            <FormattedMessage
+              id="management.indices.createIndexPattern.emptyState.or"
+              defaultMessage=" or "
+            />
             <EuiLink
               href="#/home/tutorial_directory/sampleData"
             >
-              get started with some sample data sets.
+              <FormattedMessage
+                id="management.indices.createIndexPattern.emptyState.getStarted"
+                defaultMessage="get started with some sample data sets."
+              />
             </EuiLink>
           </p>
         </EuiText>
@@ -73,7 +96,10 @@ export const EmptyState = ({
               onClick={onRefresh}
               data-test-subj="refreshIndicesButton"
             >
-              Check for new data
+              <FormattedMessage
+                id="management.indices.createIndexPattern.emptyState.checkData"
+                defaultMessage="Check for new data"
+              />
             </EuiButton>
           </EuiFlexItem>
         </EuiFlexGroup>
