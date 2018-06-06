@@ -7,7 +7,7 @@
 import 'isomorphic-fetch';
 import { camelizeKeys } from 'humps';
 import { kfetch } from 'ui/kfetch';
-import { memoize, isEmpty, first, startsWith } from 'lodash';
+import { memoize, first, startsWith } from 'lodash';
 import chrome from 'ui/chrome';
 import { convertKueryToEsQuery } from './kuery';
 import { getFromSavedObject } from 'ui/index_patterns/static_utils';
@@ -48,10 +48,6 @@ export const getAPMIndexPattern = memoize(async () => {
       type: 'index-pattern'
     }
   });
-
-  if (isEmpty(res.savedObjects)) {
-    return {};
-  }
 
   const apmIndexPattern = chrome.getInjected('apmIndexPattern');
   const apmSavedObject = first(
