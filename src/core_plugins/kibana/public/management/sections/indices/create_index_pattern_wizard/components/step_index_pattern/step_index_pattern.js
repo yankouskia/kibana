@@ -38,20 +38,18 @@ import {
   EuiCallOut,
 } from '@elastic/eui';
 
-import {
-  injectIntl,
-  FormattedMessage
-} from '@kbn/i18n';
+import { ReactI18n } from '@kbn/i18n';
 
-class StepIndexPatternComponent extends Component {
+const { I18nContext, FormattedMessage } = ReactI18n;
+
+export class StepIndexPattern extends Component {
   static propTypes = {
     allIndices: PropTypes.array.isRequired,
     isIncludingSystemIndices: PropTypes.bool.isRequired,
     esService: PropTypes.object.isRequired,
     savedObjectsClient: PropTypes.object.isRequired,
     goToNextStep: PropTypes.func.isRequired,
-    initialQuery: PropTypes.string,
-    intl: PropTypes.object
+    initialQuery: PropTypes.string
   }
 
   static defaultProps = {
@@ -213,14 +211,14 @@ class StepIndexPatternComponent extends Component {
       <EuiCallOut
         title={<FormattedMessage
           id="management.indices.indexPattern.label.whoops"
-          defaultMessage={`Whoops!`}
+          defaultMessage="Whoops!"
         />}
         iconType="help"
         color="warning"
       >
         <p><FormattedMessage
           id="management.indices.indexPattern.label.patternExists"
-          defaultMessage={`There{apostrophe}s already an index pattern called \`{query}\``}
+          defaultMessage="There{apostrophe}s already an index pattern called \`{query}\`"
           values={{ apostrophe: <span>&apos;</span>, query }}
         />
         </p>
@@ -228,7 +226,7 @@ class StepIndexPatternComponent extends Component {
     );
   }
 
-  renderHeader({ exactMatchedIndices: indices }) {
+  renderHeader({ exactMatchedIndices: indices }, intl) {
     const { goToNextStep } = this.props;
     const { query, showingIndexPatternQueryErrors, indexPatternExists } = this.state;
 
@@ -241,12 +239,10 @@ class StepIndexPatternComponent extends Component {
       containsErrors = true;
     }
     else if (!containsInvalidCharacters(query, ILLEGAL_CHARACTERS)) {
-      errors.push(this.props.intl.formatMessage({
+      errors.push(intl.formatMessage({
         id: 'management.indices.indexPattern.error.invalidCharacters',
-        defaultMessage: `An index pattern cannot contain spaces or the characters: {characterList}`
-      },
-      { characterList }
-      ));
+        defaultMessage: 'An index pattern cannot contain spaces or the characters: {characterList}'
+      }, { characterList }));
       containsErrors = true;
     }
 
@@ -281,7 +277,9 @@ class StepIndexPatternComponent extends Component {
 
     return (
       <EuiPanel paddingSize="l">
-        {this.renderHeader(matchedIndices)}
+        <I18nContext>
+          {intl => this.renderHeader(matchedIndices, intl)}
+        </I18nContext>
         <EuiSpacer size="s"/>
         {this.renderLoadingState(matchedIndices)}
         {this.renderIndexPatternExists()}
@@ -293,4 +291,3 @@ class StepIndexPatternComponent extends Component {
   }
 }
 
-export const StepIndexPattern = injectIntl(StepIndexPatternComponent);

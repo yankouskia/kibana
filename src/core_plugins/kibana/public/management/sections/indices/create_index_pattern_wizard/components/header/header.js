@@ -29,7 +29,9 @@ import {
   EuiSwitch,
 } from '@elastic/eui';
 
-import { FormattedMessage } from '@kbn/i18n';
+import { ReactI18n } from '@kbn/i18n';
+
+const { FormattedMessage } = ReactI18n;
 
 export const Header = ({
   isIncludingSystemIndices,
@@ -41,7 +43,7 @@ export const Header = ({
       <h1>
         <FormattedMessage
           id="management.indices.header"
-          defaultMessage={`Create index pattern`}
+          defaultMessage="Create index pattern"
         />
       </h1>
 
@@ -53,7 +55,7 @@ export const Header = ({
             <EuiTextColor color="subdued">
               <FormattedMessage
                 id="management.indices.header.description"
-                defaultMessage={`Kibana uses index patterns to retrieve data from Elasticsearch indices for things like visualizations.`}
+                defaultMessage="Kibana uses index patterns to retrieve data from Elasticsearch indices for things like visualizations."
               />
             </EuiTextColor>
           </p>
@@ -63,7 +65,7 @@ export const Header = ({
         <EuiSwitch
           label={<FormattedMessage
             id="management.indices.header.switch"
-            defaultMessage={`Include system indices`}
+            defaultMessage="Include system indices"
           />}
           checked={isIncludingSystemIndices}
           onChange={onChangeIncludingSystemIndices}

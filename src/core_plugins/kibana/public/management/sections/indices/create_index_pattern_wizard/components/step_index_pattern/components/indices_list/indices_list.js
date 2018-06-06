@@ -40,7 +40,9 @@ import {
   Pager
 } from '@elastic/eui/lib/services';
 
-import { FormattedMessage } from '@kbn/i18n';
+import { ReactI18n } from '@kbn/i18n';
+
+const { FormattedMessage } = ReactI18n;
 
 export class IndicesList extends Component {
   static propTypes = {
@@ -102,7 +104,7 @@ export class IndicesList extends Component {
       >
         <FormattedMessage
           id="management.indices.indexPattern.list.paging"
-          defaultMessage={`Rows per page: {perPage}`}
+          defaultMessage="Rows per page: {perPage}"
           values={{ perPage }}
         />
       </EuiButtonEmpty>

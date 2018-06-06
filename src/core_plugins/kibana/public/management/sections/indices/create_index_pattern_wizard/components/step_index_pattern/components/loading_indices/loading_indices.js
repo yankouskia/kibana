@@ -27,7 +27,9 @@ import {
   EuiLoadingSpinner,
 } from '@elastic/eui';
 
-import { FormattedMessage } from '@kbn/i18n';
+import { ReactI18n } from '@kbn/i18n';
+
+const { FormattedMessage } = ReactI18n;
 
 export const LoadingIndices = ({ ...rest }) => (
   <EuiFlexGroup
@@ -44,7 +46,7 @@ export const LoadingIndices = ({ ...rest }) => (
         <EuiTextColor color="subdued">
           <FormattedMessage
             id="management.indices.indexPattern.loading.header"
-            defaultMessage={`Looking for matching indices...`}
+            defaultMessage="Looking for matching indices..."
           />
         </EuiTextColor>
       </EuiText>
@@ -53,7 +55,7 @@ export const LoadingIndices = ({ ...rest }) => (
         <EuiTextColor color="subdued">
           <FormattedMessage
             id="management.indices.indexPattern.loading.title"
-            defaultMessage={`Just a sec...`}
+            defaultMessage="Just a sec..."
           />
         </EuiTextColor>
       </EuiText>
