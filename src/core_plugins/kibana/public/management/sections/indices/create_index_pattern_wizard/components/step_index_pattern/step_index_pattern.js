@@ -49,7 +49,7 @@ export class StepIndexPattern extends Component {
     esService: PropTypes.object.isRequired,
     savedObjectsClient: PropTypes.object.isRequired,
     goToNextStep: PropTypes.func.isRequired,
-    initialQuery: PropTypes.string
+    initialQuery: PropTypes.string,
   }
 
   static defaultProps = {
@@ -218,7 +218,7 @@ export class StepIndexPattern extends Component {
       >
         <p><FormattedMessage
           id="management.indices.indexPattern.label.patternExists"
-          defaultMessage="There{apostrophe}s already an index pattern called \`{query}\`"
+          defaultMessage="There{apostrophe}s already an index pattern called `{query}`"
           values={{ apostrophe: <span>&apos;</span>, query }}
         />
         </p>
@@ -290,4 +290,3 @@ export class StepIndexPattern extends Component {
     );
   }
 }
-
