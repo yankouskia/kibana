@@ -25,6 +25,10 @@ import {
   EuiSpacer,
 } from '@elastic/eui';
 
+import { ReactI18n } from '@kbn/i18n';
+
+const { I18nContext, FormattedMessage } = ReactI18n;
+
 export const CallOuts = ({
   deprecatedLangsInUse,
   painlessDocLink,
@@ -34,19 +38,40 @@ export const CallOuts = ({
   }
 
   return (
-    <div>
-      <EuiCallOut
-        title="Deprecation languages in use"
-        color="danger"
-        iconType="cross"
-      >
-        <p>
-          The following deprecated languages are in use: {deprecatedLangsInUse.join(', ')}.
-          Support for these languages will be removed in the next major version of Kibana
-          and Elasticsearch. Convert you scripted fields to <EuiLink href={painlessDocLink}>Painless</EuiLink> to avoid any problems.
-        </p>
-      </EuiCallOut>
-      <EuiSpacer size="m"/>
-    </div>
+    <I18nContext>
+      {intl => (
+        <div>
+          <EuiCallOut
+            title={intl.formatMessage({
+              id: 'management.indices.editIndexPattern.scripted.deprecationLang', defaultMessage: 'Deprecation languages in use' })}
+            color="danger"
+            iconType="cross"
+          >
+            <p>
+              <FormattedMessage
+                id="management.indices.editIndexPattern.scripted.deprecationLang.description"
+                defaultMessage="The following deprecated languages are in use: {deprecatedLangsInUse}.
+                Support for these languages will be removed in the next major version of Kibana and Elasticsearch.
+                Convert you scripted fields to {link} to avoid any problems."
+                values={{
+                  deprecatedLangsInUse: deprecatedLangsInUse.join(', '),
+                  link: <FormattedMessage
+                    id="management.indices.editIndexPattern.scripted.deprecationLang.description.link"
+                    defaultMessage="{hrefObj}"
+                    values={{
+                      hrefObj:
+  <EuiLink href={painlessDocLink}>
+    <FormattedMessage id="management.indices.editIndexPattern.scripted.deprecationLang.description.painless" defaultMessage="Painless"/>
+  </EuiLink>
+                    }}
+                  />
+                }}
+              />
+            </p>
+          </EuiCallOut>
+          <EuiSpacer size="m"/>
+        </div>
+      )}
+    </I18nContext>
   );
 };

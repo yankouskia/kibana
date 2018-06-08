@@ -28,6 +28,10 @@ import {
   RIGHT_ALIGNMENT,
 } from '@elastic/eui';
 
+import { ReactI18n } from '@kbn/i18n';
+
+const { I18nContext, FormattedMessage } = ReactI18n;
+
 export class Table extends Component {
   static propTypes = {
     indexPattern: PropTypes.object.isRequired,
@@ -65,7 +69,7 @@ export class Table extends Component {
     }
   };
 
-  getColumns() {
+  getColumns(intl) {
     const {
       deleteFilter,
       fieldWildcardMatcher,
@@ -76,8 +80,9 @@ export class Table extends Component {
     return [
       {
         field: 'value',
-        name: 'Filter',
-        description: `Filter name`,
+        name: intl.formatMessage({ id: 'management.indices.editIndexPattern.source.table.filter', defaultMessage: 'Filter' }),
+        description: intl.formatMessage({
+          id: 'management.indices.editIndexPattern.source.table.filter.desc', defaultMessage: 'Filter name' }),
         dataType: 'string',
         sortable: true,
         render: (value, filter) => {
@@ -97,8 +102,11 @@ export class Table extends Component {
       },
       {
         field: 'value',
-        name: 'Matches',
-        description: `Language used for the field`,
+        name: intl.formatMessage({
+          id: 'management.indices.editIndexPattern.source.table.matches', defaultMessage: 'Matches' }),
+        description: intl.formatMessage({
+          id: 'management.indices.editIndexPattern.source.table.matches.desc',
+          defaultMessage: 'Language used for the field' }),
         dataType: 'string',
         sortable: true,
         render: (value, filter) => {
@@ -117,7 +125,13 @@ export class Table extends Component {
           }
 
           return (
-            <em>The source filter doesn&apos;t match any known fields.</em>
+            <em>
+              <FormattedMessage
+                id="management.indices.editIndexPattern.source.table.notMatched"
+                defaultMessage="The source filter doesn{apostrophe}t match any known fields."
+                values={{ apostrophe: <span>&apos;</span> }}
+              />
+            </em>
           );
         },
       },
@@ -139,7 +153,8 @@ export class Table extends Component {
                     this.stopEditingFilter();
                   }}
                   iconType="checkInCircleFilled"
-                  aria-label="Save"
+                  aria-label={intl.formatMessage({
+                    id: 'management.indices.editIndexPattern.source.table.save_aria', defaultMessage: 'Save' })}
                 />
                 <EuiButtonIcon
                   size="s"
@@ -147,7 +162,8 @@ export class Table extends Component {
                     this.stopEditingFilter();
                   }}
                   iconType="cross"
-                  aria-label="Cancel"
+                  aria-label={intl.formatMessage({
+                    id: 'management.indices.editIndexPattern.source.table.cancel_aria', defaultMessage: 'Cancel' })}
                 />
               </Fragment>
             );
@@ -160,7 +176,8 @@ export class Table extends Component {
                 color="danger"
                 onClick={() => deleteFilter(filter)}
                 iconType="trash"
-                aria-label="Delete"
+                aria-label={intl.formatMessage({
+                  id: 'management.indices.editIndexPattern.source.table.delete_aria', defaultMessage: 'Delete' })}
               />
               <EuiButtonIcon
                 size="s"
@@ -168,7 +185,8 @@ export class Table extends Component {
                   this.startEditingFilter(filter.clientId, filter.value)
                 }
                 iconType="pencil"
-                aria-label="Edit"
+                aria-label={intl.formatMessage({
+                  id: 'management.indices.editIndexPattern.source.table.edit_aria', defaultMessage: 'Edit' })}
               />
             </Fragment>
           );
@@ -179,20 +197,25 @@ export class Table extends Component {
 
   render() {
     const { items, isSaving } = this.props;
-    const columns = this.getColumns();
     const pagination = {
       initialPageSize: 10,
       pageSizeOptions: [5, 10, 25, 50],
     };
 
     return (
-      <EuiInMemoryTable
-        loading={isSaving}
-        items={items}
-        columns={columns}
-        pagination={pagination}
-        sorting={true}
-      />
+      <I18nContext>
+        {intl => {
+          const columns = this.getColumns(intl);
+
+          return (<EuiInMemoryTable
+            loading={isSaving}
+            items={items}
+            columns={columns}
+            pagination={pagination}
+            sorting={true}
+          />);
+        }}
+      </I18nContext>
     );
   }
 }

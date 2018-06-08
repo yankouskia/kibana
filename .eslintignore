@@ -28,4 +28,4 @@ bower_components
 /x-pack/plugins/**/__tests__/fixtures/**
 **/*.js.snap
 !/.eslintrc.js
-*
+
