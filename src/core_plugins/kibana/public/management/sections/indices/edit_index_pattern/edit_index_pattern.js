@@ -173,7 +173,7 @@ uiRoutes
 
 uiModules.get('apps/management')
   .controller('managementIndicesEdit', function (
-    $scope, $location, $route, config, courier, Notifier, Private, AppState, docTitle, confirmModal) {
+    $scope, $location, $route, config, courier, Notifier, Private, AppState, docTitle, confirmModal, i18n) {
     const notify = new Notifier();
     const $state = $scope.state = new AppState();
     const { fieldWildcardMatcher } = Private(FieldWildcardProvider);
@@ -234,15 +234,17 @@ uiModules.get('apps/management')
 
     $scope.refreshFields = function () {
       const confirmModalOptions = {
-        confirmButtonText: 'Refresh',
+        confirmButtonText: i18n('management.indices.editIndexPattern.refresh', { defaultMessage: 'Refresh' }),
         onConfirm: async () => {
           await $scope.indexPattern.init(true);
           $scope.fields = $scope.indexPattern.getNonScriptedFields();
         },
-        title: 'Refresh field list?'
+        title: i18n('management.indices.editIndexPattern.refresh.question', { defaultMessage: 'Refresh field list?' })
       };
       confirmModal(
-        'This action resets the popularity counter of each field.',
+        i18n(
+          'management.indices.editIndexPattern.refresh.describe',
+          { defaultMessage: 'This action resets the popularity counter of each field.' }),
         confirmModalOptions
       );
     };
@@ -278,7 +280,8 @@ uiModules.get('apps/management')
 
     $scope.setIndexPatternsTimeField = function (field) {
       if (field.type !== 'date') {
-        notify.error('That field is a ' + field.type + ' not a date.');
+        notify.error(i18n('management.indices.editIndexPattern.error.wrongType',
+          { values: { fieldType: field.type }, defaultMessage: 'That field is a {fieldType} not a date.' }));
         return;
       }
       $scope.indexPattern.timeFieldName = field.name;
