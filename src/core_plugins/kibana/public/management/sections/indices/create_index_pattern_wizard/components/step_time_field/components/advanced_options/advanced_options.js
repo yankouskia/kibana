@@ -75,8 +75,8 @@ export const AdvancedOptions = ({
                 <span>
                   <FormattedMessage
                     id="management.indices.createIndexPattern.stepTime.options.description"
-                    defaultMessage="Kibana will provide a unique identifier for each index pattern.
-              If you do not want to use this unique ID, enter a custom one."
+                    defaultMessage="Kibana will provide a unique identifier for each index pattern. If you do not want \
+to use this unique ID, enter a custom one."
                   />
                 </span>
               }

@@ -46,8 +46,8 @@ export const Header = ({
       <span>
         <FormattedMessage
           id="management.indices.createIndexPattern.stepTime.header.description"
-          defaultMessage="You{apostrophe}ve defined {indexPattern} as your index pattern.
-        Now you can specify some settings before we create it."
+          defaultMessage="You{apostrophe}ve defined {indexPattern} as your index pattern. Now you can specify some \
+settings before we create it."
           values={{ apostrophe: <span>&apos;</span>, indexPattern: <strong>{indexPattern}</strong> }}
         />
       </span>
