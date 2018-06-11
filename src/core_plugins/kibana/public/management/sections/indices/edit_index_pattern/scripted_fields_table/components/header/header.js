@@ -44,8 +44,8 @@ export const Header = ({ addScriptedFieldUrl }) => (
         <p>
           <FormattedMessage
             id="management.indices.editIndexPattern.scripted.header.description"
-            defaultMessage="You can use scripted fields in visualizations and display them in your documents.
-          However, you cannot search scripted fields."
+            defaultMessage="You can use scripted fields in visualizations and display them in your documents. However, \
+you cannot search scripted fields."
           />
         </p>
       </EuiText>

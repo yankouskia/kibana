@@ -26,8 +26,8 @@
 
       <p class="kuiText kuiVerticalRhythm">
         <span i18n-id="management.indices.indexPattern.timeFilterField.description"
-          i18n-default-message="This page lists every field in the <strong>{indexPatternTitle}</strong> index and the field's associated core type as recorded by Elasticsearch. To change a field type, use the Elasticsearch"
-          i18n-values="{indexPatternTitle: indexPattern.title}"></span>
+          i18n-default-message="This page lists every field in the {indexPatternTitle} index and the field's associated core type as recorded by Elasticsearch. To change a field type, use the Elasticsearch"
+          i18n-values="{indexPatternTitle: '<strong>' + indexPattern.title + '</strong>'}"></span>
         <a target="_window" class="euiLink euiLink--primary" href="http://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">
           <span i18n-id="management.indices.indexPattern.timeFilterField.mappingAPI"
                 i18n-default-message="Mapping API"></span>
@@ -51,9 +51,7 @@
         <div class="kuiInfoPanelBody">
           <div class="kuiInfoPanelBody__message">
             <span i18n-id="management.indices.indexPattern.timePattern.unsupported.description"
-                  i18n-default-message="Support for time-interval based index patterns has been removed! In the next major
-            version of Kibana this index patterns will stop working. Migrate saved objects that
-            use this index pattern to a wildcard pattern and delete this one."></span>
+                  i18n-default-message="Support for time-interval based index patterns has been removed! In the next major version of Kibana this index patterns will stop working. Migrate saved objects that use this index pattern to a wildcard pattern and delete this one."></span>
           </div>
         </div>
       </div>

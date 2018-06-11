@@ -68,8 +68,8 @@ export const StatusMessage = ({
         <span>
           <FormattedMessage
             id="management.indices.createIndexPattern.step.status.noSystemIndicesWithPrompt"
-            defaultMessage="No Elasticsearch indices match your pattern.
-            To view the matching system indices, toggle the switch in the upper right."
+            defaultMessage="No Elasticsearch indices match your pattern. To view the matching system indices, toggle \
+the switch in the upper right."
           />
         </span>
       );
@@ -107,7 +107,7 @@ export const StatusMessage = ({
               <strong>
                 <FormattedMessage
                   id="management.indices.createIndexPattern.step.status.success.description.index"
-                  defaultMessage="{indicesLength, plural, one {# index} other {# indices} }"
+                  defaultMessage="{indicesLength, plural, one {# index} other {# indices}}"
                   values={{ indicesLength: exactMatchedIndices.length }}
                 />
               </strong>)
@@ -148,8 +148,8 @@ export const StatusMessage = ({
       <span>
         <FormattedMessage
           id="management.indices.createIndexPattern.step.status.notMatch"
-          defaultMessage="The index pattern you{apostrophe}ve entered doesn{apostrophe}t match any indices.
-          You can match any of your {allIndices}, below."
+          defaultMessage="The index pattern you{apostrophe}ve entered doesn{apostrophe}t match any indices. You can \
+match any of your {allIndices}, below."
           values={{ apostrophe: <span>&apos;</span>, allIndices: (
             <strong><FormattedMessage
               id="management.indices.createIndexPattern.step.status.notMatch.allIndices"
