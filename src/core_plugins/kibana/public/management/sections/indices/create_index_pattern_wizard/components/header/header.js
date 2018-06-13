@@ -42,7 +42,7 @@ export const Header = ({
     <EuiTitle>
       <h1>
         <FormattedMessage
-          id="management.indices.createIndexPattern.header"
+          id="management.indexPattern.create.header.label"
           defaultMessage="Create index pattern"
         />
       </h1>
@@ -54,7 +54,7 @@ export const Header = ({
           <p>
             <EuiTextColor color="subdued">
               <FormattedMessage
-                id="management.indices.createIndexPattern.header.description"
+                id="management.indexPattern.create.header.detail"
                 defaultMessage="Kibana uses index patterns to retrieve data from Elasticsearch indices for things like visualizations."
               />
             </EuiTextColor>
@@ -64,7 +64,7 @@ export const Header = ({
       <EuiFlexItem grow={false}>
         <EuiSwitch
           label={<FormattedMessage
-            id="management.indices.createIndexPattern.header.switch"
+            id="management.indexPattern.create.header.switch"
             defaultMessage="Include system indices"
           />}
           checked={isIncludingSystemIndices}

@@ -46,7 +46,7 @@ export const AdvancedOptions = ({
         ? (
           <span>
             <FormattedMessage
-              id="management.indices.createIndexPattern.stepTime.options.hide"
+              id="management.indexPattern.create.stepTime.options.hide"
               defaultMessage="Hide advanced options"
             />
           </span>
@@ -54,7 +54,7 @@ export const AdvancedOptions = ({
         : (
           <span>
             <FormattedMessage
-              id="management.indices.createIndexPattern.stepTime.options.show"
+              id="management.indexPattern.create.stepTime.options.show"
               defaultMessage="Show advanced options"
             />
           </span>
@@ -69,14 +69,14 @@ export const AdvancedOptions = ({
           <EuiForm>
             <EuiFormRow
               label={intl.formatMessage({
-                id: 'management.indices.createIndexPattern.stepTime.options.placeholder',
+                id: 'management.indexPattern.create.stepTime.options.placeholder',
                 defaultMessage: 'Custom index pattern ID' })}
               helpText={
                 <span>
                   <FormattedMessage
-                    id="management.indices.createIndexPattern.stepTime.options.description"
-                    defaultMessage="Kibana will provide a unique identifier for each index pattern. If you do not want \
-to use this unique ID, enter a custom one."
+                    id="management.indexPattern.create.stepTime.options.detail"
+                    defaultMessage={`Kibana will provide a unique identifier for each index pattern. If you do not want \
+to use this unique ID, enter a custom one.`}
                   />
                 </span>
               }
@@ -87,7 +87,7 @@ to use this unique ID, enter a custom one."
                 value={indexPatternId}
                 onChange={onChangeIndexPatternId}
                 placeholder={intl.formatMessage({
-                  id: 'management.indices.createIndexPattern.stepTime.options.patternPlaceholder',
+                  id: 'management.indexPattern.create.stepTime.options.patternPlaceholder',
                   defaultMessage: 'custom-index-pattern-id' })}
               />
             </EuiFormRow>
