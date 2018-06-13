@@ -34,17 +34,17 @@ export function IndicesEditSectionsProvider(i18n) {
 
     return [
       {
-        title: i18n('management.indices.editIndexPattern.tabs.fields', { defaultMessage: 'Fields' }),
+        title: i18n('management.indexPattern.edit.tabs.fields', { defaultMessage: 'Fields' }),
         index: 'indexedFields',
         count: fieldCount.indexed
       },
       {
-        title: i18n('management.indices.editIndexPattern.tabs.scripted', { defaultMessage: 'Scripted fields' }),
+        title: i18n('management.indexPattern.edit.tabs.scripted', { defaultMessage: 'Scripted fields' }),
         index: 'scriptedFields',
         count: fieldCount.scripted
       },
       {
-        title: i18n('management.indices.editIndexPattern.tabs.source', { defaultMessage: 'Source filters' }),
+        title: i18n('management.indexPattern.edit.tabs.source', { defaultMessage: 'Source filters' }),
         index: 'sourceFilters',
         count: fieldCount.sourceFilters
       }

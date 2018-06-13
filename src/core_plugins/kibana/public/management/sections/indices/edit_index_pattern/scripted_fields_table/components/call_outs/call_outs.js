@@ -43,25 +43,24 @@ export const CallOuts = ({
         <div>
           <EuiCallOut
             title={intl.formatMessage({
-              id: 'management.indices.editIndexPattern.scripted.deprecationLang', defaultMessage: 'Deprecation languages in use' })}
+              id: 'management.indexPattern.edit.scripted.deprecationLang.label', defaultMessage: 'Deprecation languages in use' })}
             color="danger"
             iconType="cross"
           >
             <p>
               <FormattedMessage
-                id="management.indices.editIndexPattern.scripted.deprecationLang.description"
-                defaultMessage="The following deprecated languages are in use: {deprecatedLangsInUse}. Support for \
-these languages will be removed in the next major version of Kibana and Elasticsearch. Convert you scripted fields to \
-{link} to avoid any problems."
+                id="management.indexPattern.edit.scripted.deprecationLang.detail.label"
+                defaultMessage={`The following deprecated languages are in use: {deprecatedLangsInUse}. Support for these languages \
+will be removed in the next major version of Kibana and Elasticsearch. Convert you scripted fields to {link} to avoid any problems.`}
                 values={{
                   deprecatedLangsInUse: deprecatedLangsInUse.join(', '),
                   link: <FormattedMessage
-                    id="management.indices.editIndexPattern.scripted.deprecationLang.description.link"
+                    id="management.indexPattern.edit.scripted.deprecationLang.detail.link"
                     defaultMessage="{hrefObj}"
                     values={{
                       hrefObj:
   <EuiLink href={painlessDocLink}>
-    <FormattedMessage id="management.indices.editIndexPattern.scripted.deprecationLang.description.painless" defaultMessage="Painless"/>
+    <FormattedMessage id="management.indexPattern.edit.scripted.deprecationLang.detail.painless" defaultMessage="Painless"/>
   </EuiLink>
                     }}
                   />

@@ -36,7 +36,7 @@ export const Header = ({
     <EuiTitle size="s">
       <h2>
         <FormattedMessage
-          id="management.indices.createIndexPattern.stepTime.header"
+          id="management.indexPattern.create.stepTime.header.label"
           defaultMessage="Step 2 of 2: Configure settings"
         />
       </h2>
@@ -45,10 +45,9 @@ export const Header = ({
     <EuiText color="subdued">
       <span>
         <FormattedMessage
-          id="management.indices.createIndexPattern.stepTime.header.description"
-          defaultMessage="You{apostrophe}ve defined {indexPattern} as your index pattern. Now you can specify some \
-settings before we create it."
-          values={{ apostrophe: <span>&apos;</span>, indexPattern: <strong>{indexPattern}</strong> }}
+          id="management.indexPattern.create.stepTime.header.detail"
+          defaultMessage="You've defined {indexPattern} as your index pattern. Now you can specify some settings before we create it."
+          values={{ indexPattern: <strong>{indexPattern}</strong> }}
         />
       </span>
     </EuiText>

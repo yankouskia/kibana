@@ -48,7 +48,7 @@ export const Header = ({
     <EuiTitle size="s">
       <h2>
         <FormattedMessage
-          id="management.indices.createIndexPattern.step.header"
+          id="management.indexPattern.create.step.header"
           defaultMessage="Step 1 of 2: Define index pattern"
         />
       </h2>
@@ -61,7 +61,7 @@ export const Header = ({
         >
           <EuiFormRow
             label={<FormattedMessage
-              id="management.indices.createIndexPattern.step.label"
+              id="management.indexPattern.create.step.label.indexPattern"
               defaultMessage="Index pattern"
             />}
             isInvalid={isInputInvalid}
@@ -70,16 +70,16 @@ export const Header = ({
               <div>
                 <p>
                   <FormattedMessage
-                    id="management.indices.createIndexPattern.step.description.allow"
+                    id="management.indexPattern.create.step.detail.allow"
                     defaultMessage="You can use a {asterisk} as a wildcard in your index pattern."
                     values={{ asterisk: <strong>*</strong> }}
                   />
                 </p>
                 <p>
                   <FormattedMessage
-                    id="management.indices.createIndexPattern.step.description.disallow"
-                    defaultMessage="You can{apostrophe}t use spaces or the characters {characterList}."
-                    values={{ apostrophe: <span>&apos;</span>, characterList: <strong>{characterList}</strong> }}
+                    id="management.indexPattern.create.step.detail.disallow"
+                    defaultMessage="You can't use spaces or the characters {characterList}."
+                    values={{ characterList: <strong>{characterList}</strong> }}
                   />
                 </p>
               </div>
@@ -90,7 +90,7 @@ export const Header = ({
                 <EuiFieldText
                   name="indexPattern"
                   placeholder={intl.formatMessage({
-                    id: 'management.indices.createIndexPattern.step.placeholder',
+                    id: 'management.indexPattern.create.step.placeholder',
                     defaultMessage: 'index-name-*' })}
                   value={query}
                   isInvalid={isInputInvalid}
@@ -110,7 +110,7 @@ export const Header = ({
           data-test-subj="createIndexPatternGoToStep2Button"
         >
           <FormattedMessage
-            id="management.indices.createIndexPattern.step.button.nextStep"
+            id="management.indexPattern.create.step.nextStep"
             defaultMessage="Next step"
           />
         </EuiButton>

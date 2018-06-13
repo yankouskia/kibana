@@ -50,11 +50,11 @@ export const StatusMessage = ({
       statusMessage = (
         <span>
           <FormattedMessage
-            id="management.indices.createIndexPattern.step.status.match"
+            id="management.indexPattern.create.step.status.match"
             defaultMessage="Your index pattern can match any of your {allIndices}, below."
             values={{ allIndices: (
               <strong><FormattedMessage
-                id="management.indices.indexPattern.status.match.count"
+                id="management.indexPattern.create.step.status.allIndices"
                 defaultMessage="{allIndicesLength, plural, one {# index} other {# indices}}"
                 values={{ allIndicesLength: allIndices.length }}
               />
@@ -67,9 +67,9 @@ export const StatusMessage = ({
       statusMessage = (
         <span>
           <FormattedMessage
-            id="management.indices.createIndexPattern.step.status.noSystemIndicesWithPrompt"
-            defaultMessage="No Elasticsearch indices match your pattern. To view the matching system indices, toggle \
-the switch in the upper right."
+            id="management.indexPattern.create.step.status.noSystemIndicesWithPrompt"
+            defaultMessage={`No Elasticsearch indices match your pattern. To view the matching system indices, \
+toggle the switch in the upper right.`}
           />
         </span>
       );
@@ -79,7 +79,7 @@ the switch in the upper right."
       statusMessage = (
         <span>
           <FormattedMessage
-            id="management.indices.createIndexPattern.step.status.noSystemIndices"
+            id="management.indexPattern.create.step.status.noSystemIndices"
             defaultMessage="No Elasticsearch indices match your pattern."
           />
         </span>
@@ -94,19 +94,19 @@ the switch in the upper right."
         &nbsp;
         <strong>
           <FormattedMessage
-            id="management.indices.createIndexPattern.step.status.success"
+            id="management.indexPattern.create.step.status.success.label"
             defaultMessage="Success!"
           />
         </strong>
         &nbsp;
         <FormattedMessage
-          id="management.indices.createIndexPattern.step.status.success.description"
+          id="management.indexPattern.create.step.status.success.detail.label"
           defaultMessage="Your index pattern matches {exactMatchedIndices}."
           values={{
             exactMatchedIndices: (
               <strong>
                 <FormattedMessage
-                  id="management.indices.createIndexPattern.step.status.success.description.index"
+                  id="management.indexPattern.create.step.status.success.detail.exactMatchedIndices"
                   defaultMessage="{indicesLength, plural, one {# index} other {# indices}}"
                   values={{ indicesLength: exactMatchedIndices.length }}
                 />
@@ -122,21 +122,19 @@ the switch in the upper right."
     statusMessage = (
       <span>
         <FormattedMessage
-          id="management.indices.createIndexPattern.step.status.partialMatch.label1"
-          defaultMessage="Your index pattern doesn{apostrophe}t match any indices, but you have{space}"
-          values={{ apostrophe: <span>&apos;</span>, space: <span>&nbsp;</span> }}
-        />
-        <strong>
-          <FormattedMessage
-            id="management.indices.createIndexPattern.step.status.partialMatch.label2"
-            defaultMessage="{matchedIndicesLength, plural, one {# index} other {# indices}} "
-            values={{ matchedIndicesLength: partialMatchedIndices.length }}
-          />
-        </strong>
-        <FormattedMessage
-          id="management.indices.createIndexPattern.step.status.partialMatch.label3"
-          defaultMessage="which {matchedIndicesLength, plural, one {# looks} other {# look}} similar."
-          values={{ matchedIndicesLength: partialMatchedIndices.length }}
+          id="management.indexPattern.create.step.status.partialMatch.label"
+          defaultMessage={`Your index pattern doesn't match any indices, but you have {strongIndices} which \
+{matchedIndicesLength, plural, one {looks} other {look}} similar.`}
+          values={{
+            matchedIndicesLength: partialMatchedIndices.length,
+            strongIndices: (
+              <strong><FormattedMessage
+                id="management.indexPattern.create.step.status.partialMatch.strongIndices"
+                defaultMessage="{matchedIndicesLength, plural, one {# index} other {# indices}} "
+                values={{ matchedIndicesLength: partialMatchedIndices.length }}
+              />
+              </strong>)
+          }}
         />
       </span>
     );
@@ -147,12 +145,11 @@ the switch in the upper right."
     statusMessage = (
       <span>
         <FormattedMessage
-          id="management.indices.createIndexPattern.step.status.notMatch"
-          defaultMessage="The index pattern you{apostrophe}ve entered doesn{apostrophe}t match any indices. You can \
-match any of your {allIndices}, below."
-          values={{ apostrophe: <span>&apos;</span>, allIndices: (
+          id="management.indexPattern.create.step.status.notMatch.label"
+          defaultMessage="The index pattern you've entered doesn't match any indices. You can match any of your {allIndices}, below."
+          values={{ allIndices: (
             <strong><FormattedMessage
-              id="management.indices.createIndexPattern.step.status.notMatch.allIndices"
+              id="management.indexPattern.create.step.status.notMatch.allIndices"
               defaultMessage="{indicesLength} indices"
               values={{ indicesLength: allIndices.length }}
             />

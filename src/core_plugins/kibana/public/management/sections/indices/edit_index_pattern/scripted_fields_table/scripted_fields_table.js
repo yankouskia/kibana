@@ -151,15 +151,15 @@ export class ScriptedFieldsTable extends Component {
           <EuiOverlayMask>
             <EuiConfirmModal
               title={intl.formatMessage(
-                { id: 'management.indices.editIndexPattern.scripted.deleteField',
+                { id: 'management.indexPattern.edit.scripted.deleteField',
                   defaultMessage: 'Delete scripted field \'{fieldName}\'?' },
                 { fieldName: fieldToDelete.name })}
               onCancel={this.hideDeleteConfirmationModal}
               onConfirm={this.deleteField}
               cancelButtonText={intl.formatMessage({
-                id: 'management.indices.editIndexPattern.scripted.btn.cancel', defaultMessage: 'Cancel' })}
+                id: 'management.indexPattern.edit.scripted.button.cancel', defaultMessage: 'Cancel' })}
               confirmButtonText={intl.formatMessage({
-                id: 'management.indices.editIndexPattern.scripted.btn.delete', defaultMessage: 'Delete' })}
+                id: 'management.indexPattern.edit.scripted.button.delete', defaultMessage: 'Delete' })}
               defaultFocusedButton={EUI_MODAL_CONFIRM_BUTTON}
             />
           </EuiOverlayMask>

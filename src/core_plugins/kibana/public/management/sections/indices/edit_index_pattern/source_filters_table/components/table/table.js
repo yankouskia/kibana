@@ -80,9 +80,9 @@ export class Table extends Component {
     return [
       {
         field: 'value',
-        name: intl.formatMessage({ id: 'management.indices.editIndexPattern.source.table.filter', defaultMessage: 'Filter' }),
+        name: intl.formatMessage({ id: 'management.indexPattern.edit.source.table.filter.label', defaultMessage: 'Filter' }),
         description: intl.formatMessage({
-          id: 'management.indices.editIndexPattern.source.table.filter.desc', defaultMessage: 'Filter name' }),
+          id: 'management.indexPattern.edit.source.table.filter.detail', defaultMessage: 'Filter name' }),
         dataType: 'string',
         sortable: true,
         render: (value, filter) => {
@@ -103,9 +103,9 @@ export class Table extends Component {
       {
         field: 'value',
         name: intl.formatMessage({
-          id: 'management.indices.editIndexPattern.source.table.matches', defaultMessage: 'Matches' }),
+          id: 'management.indexPattern.edit.source.table.matches.label', defaultMessage: 'Matches' }),
         description: intl.formatMessage({
-          id: 'management.indices.editIndexPattern.source.table.matches.desc',
+          id: 'management.indexPattern.edit.source.table.matches.detail',
           defaultMessage: 'Language used for the field' }),
         dataType: 'string',
         sortable: true,
@@ -127,9 +127,8 @@ export class Table extends Component {
           return (
             <em>
               <FormattedMessage
-                id="management.indices.editIndexPattern.source.table.notMatched"
-                defaultMessage="The source filter doesn{apostrophe}t match any known fields."
-                values={{ apostrophe: <span>&apos;</span> }}
+                id="management.indexPattern.edit.source.table.notMatched"
+                defaultMessage="The source filter doesn't match any known fields."
               />
             </em>
           );
@@ -154,7 +153,7 @@ export class Table extends Component {
                   }}
                   iconType="checkInCircleFilled"
                   aria-label={intl.formatMessage({
-                    id: 'management.indices.editIndexPattern.source.table.save_aria', defaultMessage: 'Save' })}
+                    id: 'management.indexPattern.edit.source.table.save_aria', defaultMessage: 'Save' })}
                 />
                 <EuiButtonIcon
                   size="s"
@@ -163,7 +162,7 @@ export class Table extends Component {
                   }}
                   iconType="cross"
                   aria-label={intl.formatMessage({
-                    id: 'management.indices.editIndexPattern.source.table.cancel_aria', defaultMessage: 'Cancel' })}
+                    id: 'management.indexPattern.edit.source.table.cancel_aria', defaultMessage: 'Cancel' })}
                 />
               </Fragment>
             );
@@ -177,7 +176,7 @@ export class Table extends Component {
                 onClick={() => deleteFilter(filter)}
                 iconType="trash"
                 aria-label={intl.formatMessage({
-                  id: 'management.indices.editIndexPattern.source.table.delete_aria', defaultMessage: 'Delete' })}
+                  id: 'management.indexPattern.edit.source.table.delete_aria', defaultMessage: 'Delete' })}
               />
               <EuiButtonIcon
                 size="s"
@@ -186,7 +185,7 @@ export class Table extends Component {
                 }
                 iconType="pencil"
                 aria-label={intl.formatMessage({
-                  id: 'management.indices.editIndexPattern.source.table.edit_aria', defaultMessage: 'Edit' })}
+                  id: 'management.indexPattern.edit.source.table.edit_aria', defaultMessage: 'Edit' })}
               />
             </Fragment>
           );

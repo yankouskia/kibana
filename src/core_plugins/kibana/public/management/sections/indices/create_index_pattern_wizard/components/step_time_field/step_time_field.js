@@ -127,7 +127,7 @@ export class StepTimeField extends Component {
             <EuiFlexItem grow={false}>
               <EuiText>
                 <FormattedMessage
-                  id="management.indices.createIndexPattern.stepTime.creating"
+                  id="management.indexPattern.create.stepTime.creating"
                   defaultMessage="Creating index pattern..."
                 />
               </EuiText>

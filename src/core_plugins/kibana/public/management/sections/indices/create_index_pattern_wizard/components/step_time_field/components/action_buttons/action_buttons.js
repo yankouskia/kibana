@@ -42,7 +42,7 @@ export const ActionButtons = ({
         onClick={goToPreviousStep}
       >
         <FormattedMessage
-          id="management.indices.createIndexPattern.stepTime.actionBtn.back"
+          id="management.indexPattern.create.stepTime.actionButton.back"
           defaultMessage="Back"
         />
       </EuiButtonEmpty>
@@ -55,7 +55,7 @@ export const ActionButtons = ({
         onClick={createIndexPattern}
       >
         <FormattedMessage
-          id="management.indices.createIndexPattern.stepTime.actionBtn"
+          id="management.indexPattern.create.stepTime.actionButton.label"
           defaultMessage="Create index pattern"
         />
       </EuiButton>

@@ -52,7 +52,7 @@ export const TimeField = ({
             <EuiFlexItem grow={false}>
               <span>
                 <FormattedMessage
-                  id="management.indices.createIndexPattern.stepTime.field.name"
+                  id="management.indexPattern.create.stepTime.field.name"
                   defaultMessage="Time Filter field name"
                 />
               </span>
@@ -67,7 +67,7 @@ export const TimeField = ({
                     onClick={fetchTimeFields}
                   >
                     <FormattedMessage
-                      id="management.indices.createIndexPattern.stepTime.field.refresh"
+                      id="management.indexPattern.create.stepTime.field.refresh"
                       defaultMessage="Refresh"
                     />
                   </EuiLink>
@@ -80,14 +80,9 @@ export const TimeField = ({
           <div>
             <p>
               <FormattedMessage
-                id="management.indices.createIndexPattern.stepTime.field.description"
-                defaultMessage="The Time Filter will use this field to filter your data by time."
-              />
-            </p>
-            <p>
-              <FormattedMessage
-                id="management.indices.createIndexPattern.stepTime.field.description2"
-                defaultMessage="You can choose not to have a time field, but you will not be able to narrow down your data by a time range."
+                id="management.indexPattern.create.stepTime.field.detail"
+                defaultMessage={`The Time Filter will use this field to filter your data by time. You can choose not to have a time field, \
+but you will not be able to narrow down your data by a time range.`}
               />
             </p>
           </div>
@@ -102,7 +97,7 @@ export const TimeField = ({
                 options={[
                   {
                     text: intl.formatMessage({
-                      id: 'management.indices.createIndexPattern.stepTime.field.loading',
+                      id: 'management.indexPattern.create.stepTime.field.loading',
                       defaultMessage: 'Loading...' }),
                     value: ''
                   }
@@ -127,9 +122,8 @@ export const TimeField = ({
       <EuiText>
         <p>
           <FormattedMessage
-            id="management.indices.createIndexPattern.stepTime.field.noTimeFields"
-            defaultMessage="The indices which match this index pattern don{apostrophe}t contain any time fields."
-            values={{ apostrophe: <span>&apos;</span> }}
+            id="management.indexPattern.create.stepTime.field.noTimeFields"
+            defaultMessage="The indices which match this index pattern don't contain any time fields."
           />
         </p>
       </EuiText>

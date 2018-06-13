@@ -57,47 +57,47 @@ export class Table extends PureComponent {
 
     const getColumns = intl => ([{
       field: 'displayName',
-      name: intl.formatMessage({ id: 'management.indices.editIndexPattern.scripted.table.name', defaultMessage: 'Name' }),
+      name: intl.formatMessage({ id: 'management.indexPattern.edit.scripted.table.name.label', defaultMessage: 'Name' }),
       description: intl.formatMessage({
-        id: 'management.indices.editIndexPattern.scripted.table.name.desc', defaultMessage: 'Name of the field' }),
+        id: 'management.indexPattern.edit.scripted.table.name.detail', defaultMessage: 'Name of the field' }),
       dataType: 'string',
       sortable: true,
       width: '38%',
     }, {
       field: 'lang',
-      name: intl.formatMessage({ id: 'management.indices.editIndexPattern.scripted.table.lang', defaultMessage: 'Lang' }),
+      name: intl.formatMessage({ id: 'management.indexPattern.edit.scripted.table.lang.label', defaultMessage: 'Lang' }),
       description: intl.formatMessage({
-        id: 'management.indices.editIndexPattern.scripted.table.lang.desc',
+        id: 'management.indexPattern.edit.scripted.table.lang.detail',
         defaultMessage: 'Language used for the field' }),
       dataType: 'string',
       sortable: true,
       'data-test-subj': 'scriptedFieldLang',
     }, {
       field: 'script',
-      name: intl.formatMessage({ id: 'management.indices.editIndexPattern.scripted.table.script', defaultMessage: 'Script' }),
+      name: intl.formatMessage({ id: 'management.indexPattern.edit.scripted.table.script.label', defaultMessage: 'Script' }),
       description: intl.formatMessage({
-        id: 'management.indices.editIndexPattern.scripted.table.script.desc', defaultMessage: 'Script for the field' }),
+        id: 'management.indexPattern.edit.scripted.table.script.detail', defaultMessage: 'Script for the field' }),
       dataType: 'string',
       sortable: true,
     }, {
       field: 'name',
-      name: intl.formatMessage({ id: 'management.indices.editIndexPattern.scripted.table.format', defaultMessage: 'Format' }),
+      name: intl.formatMessage({ id: 'management.indexPattern.edit.scripted.table.format.label', defaultMessage: 'Format' }),
       description: intl.formatMessage({
-        id: 'management.indices.editIndexPattern.scripted.table.format.desc', defaultMessage: 'Format used for the field' }),
+        id: 'management.indexPattern.edit.scripted.table.format.detail', defaultMessage: 'Format used for the field' }),
       render: this.renderFormatCell,
       sortable: false,
     }, {
       name: '',
       actions: [{
-        name: intl.formatMessage({ id: 'management.indices.editIndexPattern.scripted.table.edit', defaultMessage: 'Edit' }),
+        name: intl.formatMessage({ id: 'management.indexPattern.edit.scripted.table.edit.label', defaultMessage: 'Edit' }),
         description: intl.formatMessage({
-          id: 'management.indices.editIndexPattern.scripted.table.edit.desc', defaultMessage: 'Edit this field' }),
+          id: 'management.indexPattern.edit.scripted.table.edit.detail', defaultMessage: 'Edit this field' }),
         icon: 'pencil',
         onClick: editField,
       }, {
-        name: intl.formatMessage({ id: 'management.indices.editIndexPattern.scripted.table.delete', defaultMessage: 'Delete' }),
+        name: intl.formatMessage({ id: 'management.indexPattern.edit.scripted.table.delete.label', defaultMessage: 'Delete' }),
         description: intl.formatMessage({
-          id: 'management.indices.editIndexPattern.scripted.table.delete.desc', defaultMessage: 'Delete this field' }),
+          id: 'management.indexPattern.edit.scripted.table.delete.detail', defaultMessage: 'Delete this field' }),
         icon: 'trash',
         color: 'danger',
         onClick: deleteField,

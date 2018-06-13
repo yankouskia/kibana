@@ -46,9 +46,8 @@ export const EmptyState = ({
           <EuiTextColor color="subdued">
             <h2 style={{ textAlign: 'center' }}>
               <FormattedMessage
-                id="management.indices.createIndexPattern.emptyState.noData"
-                defaultMessage="Couldn{apostrophe}t find any Elasticsearch data"
-                values={{ apostrophe: <span>&apos;</span> }}
+                id="management.indexPattern.create.emptyState.noData"
+                defaultMessage="Couldn't find any Elasticsearch data"
               />
             </h2>
           </EuiTextColor>
@@ -58,9 +57,8 @@ export const EmptyState = ({
           <p>
             <EuiTextColor color="subdued">
               <FormattedMessage
-                id="management.indices.createIndexPattern.emptyState.needToIndex"
-                defaultMessage="You{apostrophe}ll need to index some data into Elasticsearch before you can create an index pattern."
-                values={{ apostrophe: <span>&apos;</span> }}
+                id="management.indexPattern.create.emptyState.needToIndex"
+                defaultMessage="You'll need to index some data into Elasticsearch before you can create an index pattern."
               />
             </EuiTextColor>
             &nbsp;
@@ -68,19 +66,19 @@ export const EmptyState = ({
               href="#/home/tutorial_directory"
             >
               <FormattedMessage
-                id="management.indices.createIndexPattern.emptyState.learn"
+                id="management.indexPattern.create.emptyState.learn"
                 defaultMessage="Learn how"
               />
             </EuiLink>
             <FormattedMessage
-              id="management.indices.createIndexPattern.emptyState.or"
+              id="management.indexPattern.create.emptyState.or"
               defaultMessage=" or "
             />
             <EuiLink
               href="#/home/tutorial_directory/sampleData"
             >
               <FormattedMessage
-                id="management.indices.createIndexPattern.emptyState.getStarted"
+                id="management.indexPattern.create.emptyState.getStarted"
                 defaultMessage="get started with some sample data sets."
               />
             </EuiLink>
@@ -97,7 +95,7 @@ export const EmptyState = ({
               data-test-subj="refreshIndicesButton"
             >
               <FormattedMessage
-                id="management.indices.createIndexPattern.emptyState.checkData"
+                id="management.indexPattern.create.emptyState.checkData"
                 defaultMessage="Check for new data"
               />
             </EuiButton>

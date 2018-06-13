@@ -2,7 +2,7 @@
   <a
     data-test-subj="indexPatternFieldEditButton"
     ng-href="{{ kbnUrl.getRouteHref(field, 'edit') }}"
-    aria-label="{{'management.indices.indexPattern.btn.edit' | i18n: {defaultMessage: 'Edit'} }}"
+    aria-label="{{'management.indexPattern.edit.button.edit' | i18n: {defaultMessage: 'Edit'} }}"
     class="kuiButton kuiButton--basic kuiButton--small"
   >
     <span aria-hidden="true" class="kuiIcon fa-pencil"></span>
@@ -12,7 +12,7 @@
     ng-if="field.scripted"
     ng-click="remove(field)"
     class="kuiButton kuiButton--danger kuiButton--small"
-    aria-label="{{'management.indices.indexPattern.btn.delete' | i18n: {defaultMessage: 'Delete'} }}"
+    aria-label="{{'management.indexPattern.edit.button.delete' | i18n: {defaultMessage: 'Delete'} }}"
   >
     <span aria-hidden="true" class="kuiIcon fa-trash"></span>
   </button>
