@@ -22,6 +22,8 @@ import { shallow } from 'enzyme';
 
 import { AddFilter } from '../add_filter';
 
+import { mountWithIntl } from '../../../../../../../../../__tests__/intl_enzyme_test_helper';
+
 describe('AddFilter', () => {
   it('should render normally', async () => {
     const component = shallow(
@@ -33,7 +35,7 @@ describe('AddFilter', () => {
 
   it('should allow adding a filter', async () => {
     const onAddFilter = jest.fn();
-    const component = shallow(
+    const component = mountWithIntl(
       <AddFilter onAddFilter={onAddFilter}/>
     );
 
@@ -48,7 +50,7 @@ describe('AddFilter', () => {
   });
 
   it('should ignore strings with just spaces', async () => {
-    const component = shallow(
+    const component = mountWithIntl(
       <AddFilter onAddFilter={() => {}}/>
     );
 

@@ -1,83 +1,123 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AddFilter should ignore strings with just spaces 1`] = `
-<EuiFlexGroup
-  alignItems="stretch"
-  component="div"
-  direction="row"
-  gutterSize="l"
-  justifyContent="flexStart"
-  responsive={true}
-  wrap={false}
+<AddFilter
+  intl={
+    Object {
+      "defaultFormats": Object {},
+      "defaultLocale": "en",
+      "formatDate": [Function],
+      "formatHTMLMessage": [Function],
+      "formatMessage": [Function],
+      "formatNumber": [Function],
+      "formatPlural": [Function],
+      "formatRelative": [Function],
+      "formatTime": [Function],
+      "formats": Object {},
+      "formatters": Object {
+        "getDateTimeFormat": [Function],
+        "getMessageFormat": [Function],
+        "getNumberFormat": [Function],
+        "getPluralFormat": [Function],
+        "getRelativeFormat": [Function],
+      },
+      "locale": "en",
+      "messages": Object {},
+      "now": [Function],
+      "textComponent": "span",
+    }
+  }
+  onAddFilter={[Function]}
 >
-  <EuiFlexItem
-    component="div"
-    grow={10}
-  >
-    <EuiFieldText
-      compressed={false}
-      fullWidth={true}
-      isLoading={false}
-      onChange={[Function]}
-      placeholder="source filter, accepts wildcards (e.g., \`user*\` to filter fields starting with 'user')"
-      value=""
-    />
-  </EuiFlexItem>
-  <EuiFlexItem
-    component="div"
-    grow={true}
-  >
-    <EuiButton
-      color="primary"
-      fill={false}
-      iconSide="left"
-      isDisabled={true}
-      onClick={[Function]}
-      type="button"
+  <I18nContext>
+    <EuiFlexGroup
+      alignItems="stretch"
+      component="div"
+      direction="row"
+      gutterSize="l"
+      justifyContent="flexStart"
+      responsive={true}
+      wrap={false}
     >
-      Add
-    </EuiButton>
-  </EuiFlexItem>
-</EuiFlexGroup>
+      <div
+        className="euiFlexGroup euiFlexGroup--gutterLarge euiFlexGroup--directionRow euiFlexGroup--responsive"
+      >
+        <EuiFlexItem
+          component="div"
+          grow={10}
+        >
+          <div
+            className="euiFlexItem euiFlexItem--flexGrow10"
+          >
+            <EuiFieldText
+              compressed={false}
+              fullWidth={true}
+              isLoading={false}
+              onChange={[Function]}
+              placeholder="source filter, accepts wildcards (e.g., \`user*\` to filter fields starting with 'user')"
+              value=""
+            >
+              <EuiFormControlLayout
+                compressed={false}
+                fullWidth={true}
+                iconSide="left"
+                isLoading={false}
+              >
+                <div
+                  className="euiFormControlLayout euiFormControlLayout--fullWidth"
+                >
+                  <EuiValidatableControl>
+                    <input
+                      className="euiFieldText euiFieldText--fullWidth"
+                      onChange={[Function]}
+                      placeholder="source filter, accepts wildcards (e.g., \`user*\` to filter fields starting with 'user')"
+                      type="text"
+                      value=""
+                    />
+                  </EuiValidatableControl>
+                </div>
+              </EuiFormControlLayout>
+            </EuiFieldText>
+          </div>
+        </EuiFlexItem>
+        <EuiFlexItem
+          component="div"
+          grow={true}
+        >
+          <div
+            className="euiFlexItem"
+          >
+            <EuiButton
+              color="primary"
+              fill={false}
+              iconSide="left"
+              isDisabled={true}
+              onClick={[Function]}
+              type="button"
+            >
+              <button
+                className="euiButton euiButton--primary"
+                disabled={true}
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  className="euiButton__content"
+                >
+                  <span
+                    className="euiButton__text"
+                  >
+                    Add
+                  </span>
+                </span>
+              </button>
+            </EuiButton>
+          </div>
+        </EuiFlexItem>
+      </div>
+    </EuiFlexGroup>
+  </I18nContext>
+</AddFilter>
 `;
 
-exports[`AddFilter should render normally 1`] = `
-<EuiFlexGroup
-  alignItems="stretch"
-  component="div"
-  direction="row"
-  gutterSize="l"
-  justifyContent="flexStart"
-  responsive={true}
-  wrap={false}
->
-  <EuiFlexItem
-    component="div"
-    grow={10}
-  >
-    <EuiFieldText
-      compressed={false}
-      fullWidth={true}
-      isLoading={false}
-      onChange={[Function]}
-      placeholder="source filter, accepts wildcards (e.g., \`user*\` to filter fields starting with 'user')"
-      value=""
-    />
-  </EuiFlexItem>
-  <EuiFlexItem
-    component="div"
-    grow={true}
-  >
-    <EuiButton
-      color="primary"
-      fill={false}
-      iconSide="left"
-      isDisabled={true}
-      onClick={[Function]}
-      type="button"
-    >
-      Add
-    </EuiButton>
-  </EuiFlexItem>
-</EuiFlexGroup>
-`;
+exports[`AddFilter should render normally 1`] = `<I18nContext />`;

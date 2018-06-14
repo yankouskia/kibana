@@ -32,7 +32,11 @@ exports[`EmptyState should render normally 1`] = `
               }
             }
           >
-            Couldn't find any Elasticsearch data
+            <FormattedMessage
+              defaultMessage="Couldn't find any Elasticsearch data"
+              id="management.indexPattern.create.emptyState.noData"
+              values={Object {}}
+            />
           </h2>
         </EuiTextColor>
       </EuiTitle>
@@ -46,7 +50,11 @@ exports[`EmptyState should render normally 1`] = `
           <EuiTextColor
             color="subdued"
           >
-            You'll need to index some data into Elasticsearch before you can create an index pattern.
+            <FormattedMessage
+              defaultMessage="You'll need to index some data into Elasticsearch before you can create an index pattern."
+              id="management.indexPattern.create.emptyState.needToIndex"
+              values={Object {}}
+            />
           </EuiTextColor>
            
           <EuiLink
@@ -54,15 +62,27 @@ exports[`EmptyState should render normally 1`] = `
             href="#/home/tutorial_directory"
             type="button"
           >
-            Learn how
+            <FormattedMessage
+              defaultMessage="Learn how"
+              id="management.indexPattern.create.emptyState.learn"
+              values={Object {}}
+            />
           </EuiLink>
-           or 
+          <FormattedMessage
+            defaultMessage=" or "
+            id="management.indexPattern.create.emptyState.or"
+            values={Object {}}
+          />
           <EuiLink
             color="primary"
             href="#/home/tutorial_directory/sampleData"
             type="button"
           >
-            get started with some sample data sets.
+            <FormattedMessage
+              defaultMessage="get started with some sample data sets."
+              id="management.indexPattern.create.emptyState.getStarted"
+              values={Object {}}
+            />
           </EuiLink>
         </p>
       </EuiText>
@@ -91,7 +111,11 @@ exports[`EmptyState should render normally 1`] = `
             onClick={[Function]}
             type="button"
           >
-            Check for new data
+            <FormattedMessage
+              defaultMessage="Check for new data"
+              id="management.indexPattern.create.emptyState.checkData"
+              values={Object {}}
+            />
           </EuiButton>
         </EuiFlexItem>
       </EuiFlexGroup>
