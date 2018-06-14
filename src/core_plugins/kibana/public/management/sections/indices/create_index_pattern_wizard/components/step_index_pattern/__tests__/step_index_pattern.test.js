@@ -20,6 +20,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { StepIndexPattern } from '../step_index_pattern';
+import { mountWithIntl } from '../../../../../../../../__tests__/intl_enzyme_test_helper';
 
 jest.mock('../../../lib/ensure_minimum_time', () => ({
   ensureMinimumTime: async (promises) => Array.isArray(promises) ? await Promise.all(promises) : await promises
@@ -110,7 +111,13 @@ describe('StepIndexPattern', () => {
   });
 
   it('disables the next step if the index pattern exists', async () => {
-    const component = createComponent();
+    const component = mountWithIntl(<StepIndexPattern
+      allIndices={allIndices}
+      isIncludingSystemIndices={false}
+      esService={esService}
+      savedObjectsClient={savedObjectsClient}
+      goToNextStep={goToNextStep}
+    />);
     component.setState({ indexPatternExists: true });
     expect(component.find('Header').prop('isNextStepDisabled')).toBe(true);
   });

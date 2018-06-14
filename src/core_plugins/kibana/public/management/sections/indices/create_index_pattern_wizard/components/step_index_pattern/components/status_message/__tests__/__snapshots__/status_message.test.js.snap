@@ -15,15 +15,32 @@ exports[`StatusMessage should render with exact matches 1`] = `
     <span>
        
       <strong>
-        Success!
+        <FormattedMessage
+          defaultMessage="Success!"
+          id="management.indexPattern.create.step.status.success.label"
+          values={Object {}}
+        />
       </strong>
-        Your index pattern matches 
-      <strong>
-        1
-         
-        index
-      </strong>
-      .
+       
+      <FormattedMessage
+        defaultMessage="Your index pattern matches {exactMatchedIndices}."
+        id="management.indexPattern.create.step.status.success.detail.label"
+        values={
+          Object {
+            "exactMatchedIndices": <strong>
+              <FormattedMessage
+                defaultMessage="{indicesLength, plural, one {# index} other {# indices}}"
+                id="management.indexPattern.create.step.status.success.detail.exactMatchedIndices"
+                values={
+                  Object {
+                    "indicesLength": 1,
+                  }
+                }
+              />
+            </strong>,
+          }
+        }
+      />
     </span>
   </EuiTextColor>
 </EuiText>
@@ -38,12 +55,25 @@ exports[`StatusMessage should render with no partial matches 1`] = `
     color="default"
   >
     <span>
-      The index pattern you've entered doesn't match any indices. You can match any of your 
-      <strong>
-        2
-         indices
-      </strong>
-      , below.
+      <FormattedMessage
+        defaultMessage="The index pattern you've entered doesn't match any indices. You can match any of your {allIndices}, below."
+        id="management.indexPattern.create.step.status.notMatch.label"
+        values={
+          Object {
+            "allIndices": <strong>
+              <FormattedMessage
+                defaultMessage="{indicesLength} indices"
+                id="management.indexPattern.create.step.status.notMatch.allIndices"
+                values={
+                  Object {
+                    "indicesLength": 2,
+                  }
+                }
+              />
+            </strong>,
+          }
+        }
+      />
     </span>
   </EuiTextColor>
 </EuiText>
@@ -58,15 +88,26 @@ exports[`StatusMessage should render with partial matches 1`] = `
     color="default"
   >
     <span>
-      Your index pattern doesn't match any indices, but you have 
-      <strong>
-        1
-         
-        index 
-      </strong>
-      which 
-      looks
-       similar.
+      <FormattedMessage
+        defaultMessage="Your index pattern doesn't match any indices, but you have {strongIndices} which {matchedIndicesLength, plural, one {looks} other {look}} similar."
+        id="management.indexPattern.create.step.status.partialMatch.label"
+        values={
+          Object {
+            "matchedIndicesLength": 1,
+            "strongIndices": <strong>
+              <FormattedMessage
+                defaultMessage="{matchedIndicesLength, plural, one {# index} other {# indices}} "
+                id="management.indexPattern.create.step.status.partialMatch.strongIndices"
+                values={
+                  Object {
+                    "matchedIndicesLength": 1,
+                  }
+                }
+              />
+            </strong>,
+          }
+        }
+      />
     </span>
   </EuiTextColor>
 </EuiText>
@@ -81,12 +122,25 @@ exports[`StatusMessage should render without a query 1`] = `
     color="default"
   >
     <span>
-      Your index pattern can match any of your 
-      <strong>
-        2
-         indices
-      </strong>
-      , below.
+      <FormattedMessage
+        defaultMessage="Your index pattern can match any of your {allIndices}, below."
+        id="management.indexPattern.create.step.status.match"
+        values={
+          Object {
+            "allIndices": <strong>
+              <FormattedMessage
+                defaultMessage="{allIndicesLength, plural, one {# index} other {# indices}}"
+                id="management.indexPattern.create.step.status.allIndices"
+                values={
+                  Object {
+                    "allIndicesLength": 2,
+                  }
+                }
+              />
+            </strong>,
+          }
+        }
+      />
     </span>
   </EuiTextColor>
 </EuiText>
@@ -101,7 +155,11 @@ exports[`StatusMessage should show that no indices exist 1`] = `
     color="default"
   >
     <span>
-      No Elasticsearch indices match your pattern.
+      <FormattedMessage
+        defaultMessage="No Elasticsearch indices match your pattern."
+        id="management.indexPattern.create.step.status.noSystemIndices"
+        values={Object {}}
+      />
     </span>
   </EuiTextColor>
 </EuiText>
@@ -116,7 +174,11 @@ exports[`StatusMessage should show that system indices exist 1`] = `
     color="default"
   >
     <span>
-      No Elasticsearch indices match your pattern. To view the matching system indices, toggle the switch in the upper right.
+      <FormattedMessage
+        defaultMessage="No Elasticsearch indices match your pattern. To view the matching system indices, toggle the switch in the upper right."
+        id="management.indexPattern.create.step.status.noSystemIndicesWithPrompt"
+        values={Object {}}
+      />
     </span>
   </EuiTextColor>
 </EuiText>

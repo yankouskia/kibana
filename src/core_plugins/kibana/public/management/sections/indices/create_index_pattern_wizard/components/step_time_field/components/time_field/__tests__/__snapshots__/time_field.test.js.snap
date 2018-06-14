@@ -9,10 +9,11 @@ exports[`TimeField should render a loading state 1`] = `
     helpText={
       <div>
         <p>
-          The Time Filter will use this field to filter your data by time.
-        </p>
-        <p>
-          You can choose not to have a time field, but you will not be able to narrow down your data by a time range.
+          <FormattedMessage
+            defaultMessage="The Time Filter will use this field to filter your data by time. You can choose not to have a time field, but you will not be able to narrow down your data by a time range."
+            id="management.indexPattern.create.stepTime.field.detail"
+            values={Object {}}
+          />
         </p>
       </div>
     }
@@ -31,7 +32,11 @@ exports[`TimeField should render a loading state 1`] = `
           grow={false}
         >
           <span>
-            Time Filter field name
+            <FormattedMessage
+              defaultMessage="Time Filter field name"
+              id="management.indexPattern.create.stepTime.field.name"
+              values={Object {}}
+            />
           </span>
         </EuiFlexItem>
         <EuiFlexItem
@@ -45,23 +50,7 @@ exports[`TimeField should render a loading state 1`] = `
       </EuiFlexGroup>
     }
   >
-    <EuiSelect
-      compressed={false}
-      data-test-subj="createIndexPatternTimeFieldSelect"
-      disabled={true}
-      fullWidth={false}
-      hasNoInitialSelection={false}
-      isLoading={false}
-      name="timeField"
-      options={
-        Array [
-          Object {
-            "text": "Loading...",
-            "value": "",
-          },
-        ]
-      }
-    />
+    <I18nContext />
   </EuiFormRow>
 </EuiForm>
 `;
@@ -75,10 +64,11 @@ exports[`TimeField should render a selected time field 1`] = `
     helpText={
       <div>
         <p>
-          The Time Filter will use this field to filter your data by time.
-        </p>
-        <p>
-          You can choose not to have a time field, but you will not be able to narrow down your data by a time range.
+          <FormattedMessage
+            defaultMessage="The Time Filter will use this field to filter your data by time. You can choose not to have a time field, but you will not be able to narrow down your data by a time range."
+            id="management.indexPattern.create.stepTime.field.detail"
+            values={Object {}}
+          />
         </p>
       </div>
     }
@@ -97,7 +87,11 @@ exports[`TimeField should render a selected time field 1`] = `
           grow={false}
         >
           <span>
-            Time Filter field name
+            <FormattedMessage
+              defaultMessage="Time Filter field name"
+              id="management.indexPattern.create.stepTime.field.name"
+              values={Object {}}
+            />
           </span>
         </EuiFlexItem>
         <EuiFlexItem
@@ -110,7 +104,11 @@ exports[`TimeField should render a selected time field 1`] = `
             onClick={[Function]}
             type="button"
           >
-            Refresh
+            <FormattedMessage
+              defaultMessage="Refresh"
+              id="management.indexPattern.create.stepTime.field.refresh"
+              values={Object {}}
+            />
           </EuiLink>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -148,10 +146,11 @@ exports[`TimeField should render normally 1`] = `
     helpText={
       <div>
         <p>
-          The Time Filter will use this field to filter your data by time.
-        </p>
-        <p>
-          You can choose not to have a time field, but you will not be able to narrow down your data by a time range.
+          <FormattedMessage
+            defaultMessage="The Time Filter will use this field to filter your data by time. You can choose not to have a time field, but you will not be able to narrow down your data by a time range."
+            id="management.indexPattern.create.stepTime.field.detail"
+            values={Object {}}
+          />
         </p>
       </div>
     }
@@ -170,7 +169,11 @@ exports[`TimeField should render normally 1`] = `
           grow={false}
         >
           <span>
-            Time Filter field name
+            <FormattedMessage
+              defaultMessage="Time Filter field name"
+              id="management.indexPattern.create.stepTime.field.name"
+              values={Object {}}
+            />
           </span>
         </EuiFlexItem>
         <EuiFlexItem
@@ -183,7 +186,11 @@ exports[`TimeField should render normally 1`] = `
             onClick={[Function]}
             type="button"
           >
-            Refresh
+            <FormattedMessage
+              defaultMessage="Refresh"
+              id="management.indexPattern.create.stepTime.field.refresh"
+              values={Object {}}
+            />
           </EuiLink>
         </EuiFlexItem>
       </EuiFlexGroup>
@@ -218,7 +225,11 @@ exports[`TimeField should render something if hiding time field 1`] = `
     grow={true}
   >
     <p>
-      The indices which match this index pattern don't contain any time fields.
+      <FormattedMessage
+        defaultMessage="The indices which match this index pattern don't contain any time fields."
+        id="management.indexPattern.create.stepTime.field.noTimeFields"
+        values={Object {}}
+      />
     </p>
   </EuiText>
 </EuiForm>
