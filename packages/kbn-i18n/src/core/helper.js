@@ -17,29 +17,31 @@
  * under the License.
  */
 
-import _ from 'lodash';
-import angular from 'angular';
+export const isString = value => typeof value === 'string';
 
-export function UtilsDiffTimePickerValsProvider() {
+export const isObject = value => typeof value === 'object';
 
-  const valueOf = function (o) {
-    if (o) return o.valueOf();
-  };
+export const isUndefined = value => typeof value === 'undefined';
 
-  return function (rangeA, rangeB) {
-    if (_.isObject(rangeA) && _.isObject(rangeB)) {
-      if (
-        valueOf(rangeA.to) !== valueOf(rangeB.to)
-        || valueOf(rangeA.from) !== valueOf(rangeB.from)
-        || valueOf(rangeA.value) !== valueOf(rangeB.value)
-        || valueOf(rangeA.pause) !== valueOf(rangeB.pause)
-      ) {
-        return true;
-      }
+export const hasValues = values => Object.keys(values).length > 0;
+
+export const unique = (arr = []) =>
+  arr.filter((value, index, array) => array.indexOf(value) === index);
+
+const merge = (a, b) =>
+  unique([...Object.keys(a), ...Object.keys(b)]).reduce((acc, key) => {
+    if (isObject(a[key]) && isObject(b[key])) {
+      return {
+        ...acc,
+        [key]: merge(a[key], b[key]),
+      };
     } else {
-      return !angular.equals(rangeA, rangeB);
+      return {
+        ...acc,
+        [key]: isUndefined(b[key]) ? a[key] : b[key],
+      };
     }
+  }, {});
 
-    return false;
-  };
-}
+export const deepMerge = (...sources) =>
+  sources.reduce((acc, source) => merge(acc, source));
