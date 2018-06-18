@@ -45,7 +45,7 @@ export const LoadingIndices = ({ ...rest }) => (
       <EuiText>
         <EuiTextColor color="subdued">
           <FormattedMessage
-            id="management.indexPattern.create.step.loading.header"
+            id="kbn.management.indexPattern.create.step.loading.header"
             defaultMessage="Looking for matching indices..."
           />
         </EuiTextColor>
@@ -54,7 +54,7 @@ export const LoadingIndices = ({ ...rest }) => (
       <EuiText size="s" style={{ textAlign: 'center' }}>
         <EuiTextColor color="subdued">
           <FormattedMessage
-            id="management.indexPattern.create.step.loading.title"
+            id="kbn.management.indexPattern.create.step.loading.title"
             defaultMessage="Just a sec..."
           />
         </EuiTextColor>

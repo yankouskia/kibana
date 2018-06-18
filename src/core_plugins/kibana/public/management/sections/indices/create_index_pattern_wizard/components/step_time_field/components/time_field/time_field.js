@@ -52,7 +52,7 @@ export const TimeField = ({
             <EuiFlexItem grow={false}>
               <span>
                 <FormattedMessage
-                  id="management.indexPattern.create.stepTime.field.name"
+                  id="kbn.management.indexPattern.create.stepTime.field.name"
                   defaultMessage="Time Filter field name"
                 />
               </span>
@@ -67,7 +67,7 @@ export const TimeField = ({
                     onClick={fetchTimeFields}
                   >
                     <FormattedMessage
-                      id="management.indexPattern.create.stepTime.field.refresh"
+                      id="kbn.management.indexPattern.create.stepTime.field.refresh"
                       defaultMessage="Refresh"
                     />
                   </EuiLink>
@@ -80,7 +80,7 @@ export const TimeField = ({
           <div>
             <p>
               <FormattedMessage
-                id="management.indexPattern.create.stepTime.field.detail"
+                id="kbn.management.indexPattern.create.stepTime.field.detail"
                 defaultMessage={`The Time Filter will use this field to filter your data by time.{newLine}You can choose not to have a time\
  field, but you will not be able to narrow down your data by a time range.`}
                 values={{ newLine: <br/> }}
@@ -98,7 +98,7 @@ export const TimeField = ({
                 options={[
                   {
                     text: intl.formatMessage({
-                      id: 'management.indexPattern.create.stepTime.field.loading',
+                      id: 'kbn.management.indexPattern.create.stepTime.field.loading',
                       defaultMessage: 'Loading...' }),
                     value: ''
                   }
@@ -123,7 +123,7 @@ export const TimeField = ({
       <EuiText>
         <p>
           <FormattedMessage
-            id="management.indexPattern.create.stepTime.field.noTimeFields"
+            id="kbn.management.indexPattern.create.stepTime.field.noTimeFields"
             defaultMessage="The indices which match this index pattern don't contain any time fields."
           />
         </p>
