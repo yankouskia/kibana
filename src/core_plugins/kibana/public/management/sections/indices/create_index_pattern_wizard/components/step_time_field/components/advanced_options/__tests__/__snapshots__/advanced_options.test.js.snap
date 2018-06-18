@@ -12,7 +12,7 @@ exports[`AdvancedOptions should hide if not showing 1`] = `
     <span>
       <FormattedMessage
         defaultMessage="Show advanced options"
-        id="management.indexPattern.create.stepTime.options.show"
+        id="kbn.management.indexPattern.create.stepTime.options.show"
         values={Object {}}
       />
     </span>
@@ -35,7 +35,7 @@ exports[`AdvancedOptions should render normally 1`] = `
     <span>
       <FormattedMessage
         defaultMessage="Show advanced options"
-        id="management.indexPattern.create.stepTime.options.show"
+        id="kbn.management.indexPattern.create.stepTime.options.show"
         values={Object {}}
       />
     </span>
