@@ -63,7 +63,7 @@ uiRoutes
 
         if (!this.field) {
           toastNotifications.add(i18n('kbn.management.indexPattern.edit.scripted.noField',
-            { defaultMessage: '{indexPatternTitle} index pattern doesn\'t have a scripted field called {fieldName}',
+            { defaultMessage: '\'{indexPatternTitle}\' index pattern doesn\'t have a scripted field called \'{fieldName}\'',
               values: { indexPatternTitle: this.indexPattern.title, fieldName } }));
 
           kbnUrl.redirectToRoute(this.indexPattern, 'edit');

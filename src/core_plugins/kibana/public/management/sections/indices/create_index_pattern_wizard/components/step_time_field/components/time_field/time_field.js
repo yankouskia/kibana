@@ -81,8 +81,9 @@ export const TimeField = ({
             <p>
               <FormattedMessage
                 id="management.indexPattern.create.stepTime.field.detail"
-                defaultMessage={`The Time Filter will use this field to filter your data by time. You can choose not to have a time field, \
-but you will not be able to narrow down your data by a time range.`}
+                defaultMessage={`The Time Filter will use this field to filter your data by time.{newLine}You can choose not to have a time\
+ field, but you will not be able to narrow down your data by a time range.`}
+                values={{ newLine: <br/> }}
               />
             </p>
           </div>
