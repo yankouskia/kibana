@@ -61,7 +61,7 @@ export class AddFilter extends Component {
                 value={filter}
                 onChange={e => this.setState({ filter: e.target.value.trim() })}
                 placeholder={intl.formatMessage({
-                  id: 'management.indexPattern.edit.source.placeholder',
+                  id: 'kbn.management.indexPattern.edit.source.placeholder',
                   defaultMessage: 'source filter, accepts wildcards (e.g., `user*` to filter fields starting with \'user\')' })}
               />
             </EuiFlexItem>
