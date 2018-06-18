@@ -33,13 +33,13 @@ export const Header = () => (
   <div>
     <EuiTitle size="s">
       <h3>
-        <FormattedMessage id="management.indexPattern.edit.source.header.label" defaultMessage="Source filters"/>
+        <FormattedMessage id="kbn.management.indexPattern.edit.source.header.label" defaultMessage="Source filters"/>
       </h3>
     </EuiTitle>
     <EuiText>
       <p>
         <FormattedMessage
-          id="management.indexPattern.edit.source.header.detail"
+          id="kbn.management.indexPattern.edit.source.header.detail"
           defaultMessage={`Source filters can be used to exclude one or more fields when fetching the document source. This happens when \
 viewing a document in the Discover app, or with a table displaying results from a saved search in the Dashboard app. Each row is built \
 using the source of a single document, and if you have documents with large or unimportant fields you may benefit from filtering those out \

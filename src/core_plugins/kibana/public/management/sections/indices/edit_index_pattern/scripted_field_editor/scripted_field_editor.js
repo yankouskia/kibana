@@ -62,7 +62,7 @@ uiRoutes
         this.field = this.indexPattern.fields.byName[fieldName];
 
         if (!this.field) {
-          toastNotifications.add(i18n('management.indexPattern.edit.scripted.noField',
+          toastNotifications.add(i18n('kbn.management.indexPattern.edit.scripted.noField',
             { defaultMessage: '{indexPatternTitle} index pattern doesn\'t have a scripted field called {fieldName}',
               values: { indexPatternTitle: this.indexPattern.title, fieldName } }));
 
@@ -78,12 +78,12 @@ uiRoutes
         });
       }
       else {
-        throw new Error(i18n('management.indexPattern.edit.scripted.error.unknownMode',
+        throw new Error(i18n('kbn.management.indexPattern.edit.scripted.error.unknownMode',
           { defaultMessage: 'unknown fieldSettings mode {mode}',
             values: { mode: this.mode } }));
       }
 
-      docTitle.change([this.field.name || i18n('management.indexPattern.edit.scripted.newField',
+      docTitle.change([this.field.name || i18n('kbn.management.indexPattern.edit.scripted.newField',
         { defaultMessage: 'New Scripted Field' }),
       this.indexPattern.title]);
       this.goBack = function () {
