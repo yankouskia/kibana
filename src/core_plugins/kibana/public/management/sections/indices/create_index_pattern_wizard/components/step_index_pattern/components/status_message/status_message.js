@@ -92,21 +92,21 @@ toggle the switch in the upper right.`}
     statusMessage = (
       <span>
         &nbsp;
-        <strong>
-          <FormattedMessage
-            id="management.indexPattern.create.step.status.success.label"
-            defaultMessage="Success!"
-          />
-        </strong>
-        &nbsp;
         <FormattedMessage
-          id="management.indexPattern.create.step.status.success.detail.label"
-          defaultMessage="Your index pattern matches {exactMatchedIndices}."
+          id="management.indexPattern.create.step.status.success.label"
+          defaultMessage="{strongSuccess} Your index pattern matches {exactMatchedIndices}."
           values={{
+            strongSuccess: (
+              <strong>
+                <FormattedMessage
+                  id="management.indexPattern.create.step.status.success.strongSuccess"
+                  defaultMessage="Success!"
+                />
+              </strong>),
             exactMatchedIndices: (
               <strong>
                 <FormattedMessage
-                  id="management.indexPattern.create.step.status.success.detail.exactMatchedIndices"
+                  id="management.indexPattern.create.step.status.success.exactMatchedIndices"
                   defaultMessage="{indicesLength, plural, one {# index} other {# indices}}"
                   values={{ indicesLength: exactMatchedIndices.length }}
                 />
