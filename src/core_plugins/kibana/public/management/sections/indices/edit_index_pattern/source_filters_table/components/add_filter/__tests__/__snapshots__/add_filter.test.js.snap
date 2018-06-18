@@ -60,7 +60,6 @@ exports[`AddFilter should ignore strings with just spaces 1`] = `
               <EuiFormControlLayout
                 compressed={false}
                 fullWidth={true}
-                iconSide="left"
                 isLoading={false}
               >
                 <div
@@ -75,6 +74,9 @@ exports[`AddFilter should ignore strings with just spaces 1`] = `
                       value=""
                     />
                   </EuiValidatableControl>
+                  <EuiFormControlLayoutIcons
+                    isLoading={false}
+                  />
                 </div>
               </EuiFormControlLayout>
             </EuiFieldText>
