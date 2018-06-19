@@ -90,7 +90,7 @@ export const Header = ({
                 <EuiFieldText
                   name="indexPattern"
                   placeholder={intl.formatMessage({
-                    id: 'kbn.management.indexPattern.create.step.placeholder',
+                    id: 'kbn.management.indexPattern.create.step_placeholder',
                     defaultMessage: 'index-name-*' })}
                   value={query}
                   isInvalid={isInputInvalid}
