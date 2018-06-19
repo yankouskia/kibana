@@ -69,7 +69,7 @@ export const AdvancedOptions = ({
           <EuiForm>
             <EuiFormRow
               label={intl.formatMessage({
-                id: 'kbn.management.indexPattern.create.stepTime.options_placeholder',
+                id: 'kbn.management.indexPattern.create.stepTime.options.pattern',
                 defaultMessage: 'Custom index pattern ID' })}
               helpText={
                 <span>
