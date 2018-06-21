@@ -42,7 +42,7 @@ export const LoadingState = () => (
           <EuiTextColor color="subdued">
             <h2 style={{ textAlign: 'center' }}>
               <FormattedMessage
-                id="kbn.management.indexPattern.create.loadingState.checking"
+                id="kbn.management.indexPattern.create.loadingState.checking.label"
                 defaultMessage="Checking for Elasticsearch data"
               />
             </h2>
@@ -59,7 +59,7 @@ export const LoadingState = () => (
           <EuiFlexItem grow={false}>
             <EuiText size="s" color="subdued">
               <FormattedMessage
-                id="kbn.management.indexPattern.create.loadingState.reticulating"
+                id="kbn.management.indexPattern.create.loadingState.reticulating.label"
                 defaultMessage="Reticulating splines..."
               />
             </EuiText>

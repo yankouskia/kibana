@@ -42,7 +42,7 @@ export const ActionButtons = ({
         onClick={goToPreviousStep}
       >
         <FormattedMessage
-          id="kbn.management.indexPattern.create.stepTime.actionButton.back"
+          id="kbn.management.indexPattern.create.stepTime.back.button"
           defaultMessage="Back"
         />
       </EuiButtonEmpty>
@@ -55,7 +55,7 @@ export const ActionButtons = ({
         onClick={createIndexPattern}
       >
         <FormattedMessage
-          id="kbn.management.indexPattern.create.stepTime.actionButton.label"
+          id="kbn.management.indexPattern.create.stepTime.createPattern.button"
           defaultMessage="Create index pattern"
         />
       </EuiButton>
