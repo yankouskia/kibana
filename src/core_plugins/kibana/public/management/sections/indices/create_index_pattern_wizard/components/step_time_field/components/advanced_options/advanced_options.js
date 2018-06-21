@@ -46,7 +46,7 @@ export const AdvancedOptions = ({
         ? (
           <span>
             <FormattedMessage
-              id="kbn.management.indexPattern.create.stepTime.options.hide"
+              id="kbn.management.indexPattern.create.stepTime.options.hide.button"
               defaultMessage="Hide advanced options"
             />
           </span>
@@ -54,7 +54,7 @@ export const AdvancedOptions = ({
         : (
           <span>
             <FormattedMessage
-              id="kbn.management.indexPattern.create.stepTime.options.show"
+              id="kbn.management.indexPattern.create.stepTime.options.show.button"
               defaultMessage="Show advanced options"
             />
           </span>
@@ -69,12 +69,12 @@ export const AdvancedOptions = ({
           <EuiForm>
             <EuiFormRow
               label={intl.formatMessage({
-                id: 'kbn.management.indexPattern.create.stepTime.options.pattern',
+                id: 'kbn.management.indexPattern.create.stepTime.options.pattern.header',
                 defaultMessage: 'Custom index pattern ID' })}
               helpText={
                 <span>
                   <FormattedMessage
-                    id="kbn.management.indexPattern.create.stepTime.options.detail"
+                    id="kbn.management.indexPattern.create.stepTime.options.pattern.label"
                     defaultMessage={`Kibana will provide a unique identifier for each index pattern. If you do not want \
 to use this unique ID, enter a custom one.`}
                   />
@@ -87,7 +87,7 @@ to use this unique ID, enter a custom one.`}
                 value={indexPatternId}
                 onChange={onChangeIndexPatternId}
                 placeholder={intl.formatMessage({
-                  id: 'kbn.management.indexPattern.create.stepTime.options.pattern_placeholder',
+                  id: 'kbn.management.indexPattern.create.stepTime.options.pattern.placeholder',
                   defaultMessage: 'custom-index-pattern-id' })}
               />
             </EuiFormRow>

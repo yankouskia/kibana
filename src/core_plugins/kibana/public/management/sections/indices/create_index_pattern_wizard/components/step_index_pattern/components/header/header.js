@@ -61,7 +61,7 @@ export const Header = ({
         >
           <EuiFormRow
             label={<FormattedMessage
-              id="kbn.management.indexPattern.create.step.label.indexPattern"
+              id="kbn.management.indexPattern.create.step.indexPattern.label"
               defaultMessage="Index pattern"
             />}
             isInvalid={isInputInvalid}
@@ -70,14 +70,14 @@ export const Header = ({
               <div>
                 <p>
                   <FormattedMessage
-                    id="kbn.management.indexPattern.create.step.detail.allow"
+                    id="kbn.management.indexPattern.create.step.indexPattern.allow.label"
                     defaultMessage="You can use a {asterisk} as a wildcard in your index pattern."
                     values={{ asterisk: <strong>*</strong> }}
                   />
                 </p>
                 <p>
                   <FormattedMessage
-                    id="kbn.management.indexPattern.create.step.detail.disallow"
+                    id="kbn.management.indexPattern.create.step.indexPattern.disallow.label"
                     defaultMessage="You can't use spaces or the characters {characterList}."
                     values={{ characterList: <strong>{characterList}</strong> }}
                   />
@@ -90,7 +90,7 @@ export const Header = ({
                 <EuiFieldText
                   name="indexPattern"
                   placeholder={intl.formatMessage({
-                    id: 'kbn.management.indexPattern.create.step_placeholder',
+                    id: 'kbn.management.indexPattern.create.step.indexPattern.placeholder',
                     defaultMessage: 'index-name-*' })}
                   value={query}
                   isInvalid={isInputInvalid}
@@ -110,7 +110,7 @@ export const Header = ({
           data-test-subj="createIndexPatternGoToStep2Button"
         >
           <FormattedMessage
-            id="kbn.management.indexPattern.create.step.nextStep"
+            id="kbn.management.indexPattern.create.step.nextStep.button"
             defaultMessage="Next step"
           />
         </EuiButton>

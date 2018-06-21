@@ -34,7 +34,7 @@ exports[`EmptyState should render normally 1`] = `
           >
             <FormattedMessage
               defaultMessage="Couldn't find any Elasticsearch data"
-              id="kbn.management.indexPattern.create.emptyState.noData"
+              id="kbn.management.indexPattern.create.emptyState.header"
               values={Object {}}
             />
           </h2>
@@ -52,7 +52,7 @@ exports[`EmptyState should render normally 1`] = `
           >
             <FormattedMessage
               defaultMessage="You'll need to index some data into Elasticsearch before you can create an index pattern."
-              id="kbn.management.indexPattern.create.emptyState.needToIndex"
+              id="kbn.management.indexPattern.create.emptyState.label.detail"
               values={Object {}}
             />
           </EuiTextColor>
@@ -64,13 +64,13 @@ exports[`EmptyState should render normally 1`] = `
           >
             <FormattedMessage
               defaultMessage="Learn how"
-              id="kbn.management.indexPattern.create.emptyState.learn"
+              id="kbn.management.indexPattern.create.emptyState.label.learn"
               values={Object {}}
             />
           </EuiLink>
           <FormattedMessage
             defaultMessage=" or "
-            id="kbn.management.indexPattern.create.emptyState.or"
+            id="kbn.management.indexPattern.create.emptyState.label.or"
             values={Object {}}
           />
           <EuiLink
@@ -80,7 +80,7 @@ exports[`EmptyState should render normally 1`] = `
           >
             <FormattedMessage
               defaultMessage="get started with some sample data sets."
-              id="kbn.management.indexPattern.create.emptyState.getStarted"
+              id="kbn.management.indexPattern.create.emptyState.label.getStarted"
               values={Object {}}
             />
           </EuiLink>
@@ -113,7 +113,7 @@ exports[`EmptyState should render normally 1`] = `
           >
             <FormattedMessage
               defaultMessage="Check for new data"
-              id="kbn.management.indexPattern.create.emptyState.checkData"
+              id="kbn.management.indexPattern.create.emptyState.checkData.button"
               values={Object {}}
             />
           </EuiButton>

@@ -36,7 +36,7 @@ export const Header = ({
     <EuiTitle size="s">
       <h2>
         <FormattedMessage
-          id="kbn.management.indexPattern.create.stepTime.header.label"
+          id="kbn.management.indexPattern.create.stepTime.header"
           defaultMessage="Step 2 of 2: Configure settings"
         />
       </h2>
@@ -45,7 +45,7 @@ export const Header = ({
     <EuiText color="subdued">
       <span>
         <FormattedMessage
-          id="kbn.management.indexPattern.create.stepTime.header.detail"
+          id="kbn.management.indexPattern.create.stepTime.label"
           defaultMessage="You've defined {indexPattern} as your index pattern. Now you can specify some settings before we create it."
           values={{ indexPattern: <strong>{indexPattern}</strong> }}
         />
