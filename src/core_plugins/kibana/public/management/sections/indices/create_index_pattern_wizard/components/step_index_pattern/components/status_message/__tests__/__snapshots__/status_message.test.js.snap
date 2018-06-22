@@ -15,14 +15,14 @@ exports[`StatusMessage should render with exact matches 1`] = `
     <span>
        
       <FormattedMessage
-        defaultMessage="{strongSuccess} Your index pattern matches {exactMatchedIndices}."
+        defaultMessage="{strongSuccess} Your index pattern matches {strongIndices}."
         id="kbn.management.indexPattern.create.step.status.success.label.detail"
         values={
           Object {
-            "exactMatchedIndices": <strong>
+            "strongIndices": <strong>
               <FormattedMessage
                 defaultMessage="{indicesLength, plural, one {# index} other {# indices}}"
-                id="kbn.management.indexPattern.create.step.status.success.label.exactMatchedIndices"
+                id="kbn.management.indexPattern.create.step.status.success.label.strongIndices"
                 values={
                   Object {
                     "indicesLength": 1,
@@ -55,11 +55,11 @@ exports[`StatusMessage should render with no partial matches 1`] = `
   >
     <span>
       <FormattedMessage
-        defaultMessage="The index pattern you've entered doesn't match any indices. You can match any of your {allIndices}, below."
+        defaultMessage="The index pattern you've entered doesn't match any indices. You can match any of your {strongIndices}, below."
         id="kbn.management.indexPattern.create.step.status.notMatch.label.detail"
         values={
           Object {
-            "allIndices": <strong>
+            "strongIndices": <strong>
               <FormattedMessage
                 defaultMessage="{indicesLength} indices"
                 id="kbn.management.indexPattern.create.step.status.notMatch.label.allIndices"
@@ -122,14 +122,14 @@ exports[`StatusMessage should render without a query 1`] = `
   >
     <span>
       <FormattedMessage
-        defaultMessage="Your index pattern can match any of your {allIndices}, below."
+        defaultMessage="Your index pattern can match any of your {strongIndices}, below."
         id="kbn.management.indexPattern.create.step.status.matchAny.label.detail"
         values={
           Object {
-            "allIndices": <strong>
+            "strongIndices": <strong>
               <FormattedMessage
                 defaultMessage="{allIndicesLength, plural, one {# index} other {# indices}}"
-                id="kbn.management.indexPattern.create.step.status.matchAny.label.allIndices"
+                id="kbn.management.indexPattern.create.step.status.matchAny.label.strongIndices"
                 values={
                   Object {
                     "allIndicesLength": 2,
