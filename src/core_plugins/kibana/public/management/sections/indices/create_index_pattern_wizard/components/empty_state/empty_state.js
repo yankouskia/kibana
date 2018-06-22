@@ -55,33 +55,36 @@ export const EmptyState = ({
         <EuiSpacer size="s"/>
         <EuiText>
           <p>
-            <EuiTextColor color="subdued">
-              <FormattedMessage
-                id="kbn.management.indexPattern.create.emptyState.label.detail"
-                defaultMessage="You'll need to index some data into Elasticsearch before you can create an index pattern."
-              />
-            </EuiTextColor>
-            &nbsp;
-            <EuiLink
-              href="#/home/tutorial_directory"
-            >
-              <FormattedMessage
-                id="kbn.management.indexPattern.create.emptyState.label.learn"
-                defaultMessage="Learn how"
-              />
-            </EuiLink>
             <FormattedMessage
-              id="kbn.management.indexPattern.create.emptyState.label.or"
-              defaultMessage=" or "
+              id="kbn.management.indexPattern.create.emptyState.label.detail"
+              defaultMessage="{needToIndex} {learnHowLink} or {getStartedLink}"
+              values={{
+                needToIndex: (
+                  <EuiTextColor color="subdued">
+                    <FormattedMessage
+                      id="kbn.management.indexPattern.create.emptyState.label.needToIndex"
+                      defaultMessage="You'll need to index some data into Elasticsearch before you can create an index pattern."
+                    />
+                  </EuiTextColor>
+                ),
+                learnHowLink: (
+                  <EuiLink href="#/home/tutorial_directory">
+                    <FormattedMessage
+                      id="kbn.management.indexPattern.create.emptyState.label.learnHowLink"
+                      defaultMessage="Learn how"
+                    />
+                  </EuiLink>
+                ),
+                getStartedLink: (
+                  <EuiLink href="#/home/tutorial_directory/sampleData">
+                    <FormattedMessage
+                      id="kbn.management.indexPattern.create.emptyState.label.getStartedLink"
+                      defaultMessage="get started with some sample data sets."
+                    />
+                  </EuiLink>
+                )
+              }}
             />
-            <EuiLink
-              href="#/home/tutorial_directory/sampleData"
-            >
-              <FormattedMessage
-                id="kbn.management.indexPattern.create.emptyState.label.getStarted"
-                defaultMessage="get started with some sample data sets."
-              />
-            </EuiLink>
           </p>
         </EuiText>
 

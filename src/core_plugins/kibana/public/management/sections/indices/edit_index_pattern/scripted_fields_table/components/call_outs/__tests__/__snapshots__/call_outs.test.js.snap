@@ -2,4 +2,4 @@
 
 exports[`CallOuts should render normally 1`] = `<I18nContext />`;
 
-exports[`CallOuts should render without any call outs 1`] = `<I18nContext />`;
+exports[`CallOuts should render without any call outs 1`] = `""`;
