@@ -34,7 +34,10 @@ import {
   EuiInMemoryTable,
   EuiToolTip
 } from '@elastic/eui';
+import { ReactI18n } from '@kbn/i18n';
 import { getSavedObjectIcon, getSavedObjectLabel } from '../../../../lib';
+
+const { FormattedMessage, I18nContext } = ReactI18n;
 
 export class Relationships extends Component {
   static propTypes = {
@@ -88,13 +91,21 @@ export class Relationships extends Component {
     }
 
     return (
-      <EuiCallOut title="Error" color="danger">
+      <EuiCallOut
+        title={
+          <FormattedMessage
+            id="kbn.management.savedObjects.relationships.errorTitle"
+            defaultMessage="Error"
+          />
+        }
+        color="danger"
+      >
         {error}
       </EuiCallOut>
     );
   }
 
-  renderRelationships() {
+  renderRelationships(intl) {
     const { getEditUrl, goInApp } = this.props;
     const { relationships, isLoading, error } = this.state;
 
@@ -112,48 +123,84 @@ export class Relationships extends Component {
       if (list.length === 0) {
         items.push(
           <EuiDescriptionListTitle key={`${type}_not_found`}>
-            No {type} found.
+            <FormattedMessage
+              id="kbn.management.savedObjects.relationships.callout.notFound.title"
+              defaultMessage="No {type} found."
+              values={{ type }}
+            />
           </EuiDescriptionListTitle>
         );
       } else {
         // let node;
-        let calloutTitle = 'Warning';
+        let calloutTitle = intl.formatMessage({
+          id: 'kbn.management.savedObjects.relationships.callout.default.title',
+          defaultMessage: 'Warning',
+        });
         let calloutColor = 'warning';
         let calloutText;
 
         switch (this.props.type) {
           case 'dashboard':
             calloutColor = 'success';
-            calloutTitle = 'Dashboard';
-            calloutText = `Here are some visualizations used on this dashboard. You can
-            safely delete this dashboard and the visualizations will still
-            work properly.`;
+            calloutTitle = intl.formatMessage({
+              id: 'kbn.management.savedObjects.relationships.callout.dashboard.title',
+              defaultMessage: 'Dashboard',
+            });
+            calloutText = intl.formatMessage({
+              id: 'kbn.management.savedObjects.relationships.callout.dashboard.text',
+              defaultMessage: `\
+Here are some visualizations used on this dashboard. You can \
+safely delete this dashboard and the visualizations will still \
+work properly.`,
+            });
             break;
           case 'search':
             if (type === 'visualizations') {
-              calloutText = `Here are some visualizations that use this saved search. If
-              you delete this saved search, these visualizations will not
-              longer work properly.`;
+              calloutText = intl.formatMessage({
+                id: 'kbn.management.savedObjects.relationships.callout.search.visualizations.title',
+                defaultMessage: `\
+Here are some visualizations that use this saved search. If \
+you delete this saved search, these visualizations will not \
+longer work properly.`,
+              });
             } else {
               calloutColor = 'success';
-              calloutTitle = 'Saved Search';
-              calloutText = `Here is the index pattern tied to this saved search.`;
+              calloutTitle = intl.formatMessage({
+                id: 'kbn.management.savedObjects.relationships.callout.search.other.title',
+                defaultMessage: 'Saved Search',
+              });
+              calloutText = intl.formatMessage({
+                id: 'kbn.management.savedObjects.relationships.callout.search.other.text',
+                defaultMessage: 'Here is the index pattern tied to this saved search.',
+              });
             }
             break;
           case 'visualization':
-            calloutText = `Here are some dashboards which contain this visualization. If
-            you delete this visualization, these dashboards will no longer
-            show them.`;
+            calloutText = intl.formatMessage({
+              id: 'kbn.management.savedObjects.relationships.callout.visualization.text',
+              defaultMessage: `\
+Here are some dashboards which contain this visualization. If \
+you delete this visualization, these dashboards will no longer \
+show them.`,
+            });
             break;
           case 'index-pattern':
             if (type === 'visualizations') {
-              calloutText = `Here are some visualizations that use this index pattern. If
-              you delete this index pattern, these visualizations will not
-              longer work properly.`;
+              calloutText = intl.formatMessage({
+                id: 'kbn.management.savedObjects.relationships.callout.indexPattern.visualizations.text',
+                defaultMessage: `\
+Here are some visualizations that use this index pattern. If \
+you delete this index pattern, these visualizations will not \
+longer work properly.`,
+              });
             } else if (type === 'searches') {
-              calloutText = `Here are some saved searches that use this index pattern. If
-              you delete this index pattern, these saved searches will not
-              longer work properly.`;
+              calloutText = intl.formatMessage({
+                id: 'kbn.management.savedObjects.relationships.callout.indexPattern.searches.text',
+                defaultMessage: `\
+Here are some saved searches that use this index pattern. If \
+you delete this index pattern, these saved searches will not \
+longer work properly.`,
+              });
             }
             break;
         }
@@ -169,7 +216,10 @@ export class Relationships extends Component {
               items={list}
               columns={[
                 {
-                  name: 'Type',
+                  name: intl.formatMessage({
+                    id: 'kbn.management.savedObjects.relationships.columns.type.name',
+                    defaultMessage: 'Type',
+                  }),
                   render: () => (
                     <EuiToolTip
                       position="top"
@@ -184,7 +234,10 @@ export class Relationships extends Component {
                   ),
                 },
                 {
-                  name: 'Title',
+                  name: intl.formatMessage({
+                    id: 'kbn.management.savedObjects.relationships.columns.title.name',
+                    defaultMessage: 'Title',
+                  }),
                   field: 'title',
                   render: (title, item) => (
                     <EuiLink href={`#${getEditUrl(item.id, type)}`}>
@@ -193,11 +246,20 @@ export class Relationships extends Component {
                   ),
                 },
                 {
-                  name: 'Actions',
+                  name: intl.formatMessage({
+                    id: 'kbn.management.savedObjects.relationships.columns.actions.name',
+                    defaultMessage: 'Actions',
+                  }),
                   actions: [
                     {
-                      name: 'In app',
-                      description: 'View this saved object within Kibana',
+                      name: intl.formatMessage({
+                        id: 'kbn.management.savedObjects.relationships.columns.actions.view.name',
+                        defaultMessage: 'In app',
+                      }),
+                      description: intl.formatMessage({
+                        id: 'kbn.management.savedObjects.relationships.columns.actions.view.description',
+                        defaultMessage: 'View this saved object within Kibana',
+                      }),
                       icon: 'eye',
                       onClick: object => goInApp(object.id, type),
                     },
@@ -235,7 +297,11 @@ export class Relationships extends Component {
           </EuiTitle>
         </EuiFlyoutHeader>
 
-        <EuiFlyoutBody>{this.renderRelationships()}</EuiFlyoutBody>
+        <EuiFlyoutBody>
+          <I18nContext>
+            {intl => this.renderRelationships(intl)}
+          </I18nContext>
+        </EuiFlyoutBody>
       </EuiFlyout>
     );
   }

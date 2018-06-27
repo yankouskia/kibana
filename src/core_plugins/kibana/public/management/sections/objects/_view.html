@@ -3,8 +3,12 @@
     <!-- Header -->
     <div class="kuiViewContentItem kuiBar kuiVerticalRhythm">
       <div class="kuiBarSection">
-        <h1 class="kuiTitle">
-          Edit {{ title }}
+        <h1
+          class="kuiTitle"
+          i18n-id="kbn.management.savedObjects.kui.header.edit"
+          i18n-default-message="Edit { title }"
+          i18n-values="{ title }"
+        >
         </h1>
       </div>
 
@@ -15,7 +19,12 @@
         >
           <span class="kuiButton__inner">
             <span class="kuiButton__icon kuiIcon fa-eye"></span>
-            <span>View {{ title }}</span>
+            <span
+              i18n-id="kbn.management.savedObjects.kui.header.view"
+              i18n-default-message="View { title }"
+              i18n-values="{ title }"
+            >
+            </span>
           </span>
         </a>
 
@@ -25,7 +34,12 @@
         >
           <span class="kuiButton__inner">
             <span class="kuiButton__icon kuiIcon fa-trash-o"></span>
-            <span>Delete {{ title }}</span>
+            <span
+              i18n-id="kbn.management.savedObjects.kui.header.delete"
+              i18n-default-message="Delete { title }"
+              i18n-values="{ title }"
+            >
+            </span>
           </span>
         </button>
       </div>
@@ -39,8 +53,11 @@
       <div class="kuiInfoPanel kuiInfoPanel--error">
         <div class="kuiInfoPanelHeader">
           <span class="kuiInfoPanelHeader__icon kuiIcon kuiIcon--error fa-warning"></span>
-          <span class="kuiInfoPanelHeader__title">
-            There is a problem with this saved object
+          <span
+            class="kuiInfoPanelHeader__title"
+            i18n-id="kbn.management.savedObjects.kui.errors.title"
+            i18n-default-message="There is a problem with this saved object"
+          >
           </span>
         </div>
 
@@ -48,26 +65,32 @@
           <div
             class="kuiInfoPanelBody__message"
             ng-if="notFound === 'search'"
+            i18n-id="kbn.management.savedObjects.kui.errors.notFound.search"
+            i18n-default-message="The saved search associated with this object no longer exists."
           >
-            The saved search associated with this object no longer exists.
           </div>
 
           <div
             class="kuiInfoPanelBody__message"
             ng-if="notFound === 'index-pattern'"
+            i18n-id="kbn.management.savedObjects.kui.errors.notFound.indexPattern"
+            i18n-default-message="The index pattern associated with this object no longer exists."
           >
-            The index pattern associated with this object no longer exists.
           </div>
 
           <div
             class="kuiInfoPanelBody__message"
             ng-if="notFound === 'index-pattern-field'"
+            i18n-id="kbn.management.savedObjects.kui.errors.notFound.indexPatternField"
+            i18n-default-message="A field associated with this object no longer exists in the index pattern."
           >
-            A field associated with this object no longer exists in the index pattern.
           </div>
 
-          <div class="kuiInfoPanelBody__message">
-            If you know what this error means, go ahead and fix it &mdash; otherwise click the delete button above.
+          <div
+            class="kuiInfoPanelBody__message"
+            i18n-id="kbn.management.savedObjects.kui.errors.instruction"
+            i18n-default-message="If you know what this error means, go ahead and fix it &mdash; otherwise click the delete button above."
+          >
           </div>
         </div>
       </div>
@@ -78,14 +101,20 @@
       <div class="kuiInfoPanel kuiInfoPanel--warning">
         <div class="kuiInfoPanelHeader">
           <span class="kuiInfoPanelHeader__icon kuiIcon kuiIcon--warning fa-bolt"></span>
-          <span class="kuiInfoPanelHeader__title">
-            Proceed with caution!
+          <span
+            class="kuiInfoPanelHeader__title"
+            i18n-id="kbn.management.savedObjects.kui.intro.warning.title"
+            i18n-default-message="Proceed with caution!"
+          >
           </span>
         </div>
 
         <div class="kuiInfoPanelBody">
-          <div class="kuiInfoPanelBody__message">
-            Modifying objects is for advanced users only. Object properties are not validated and invalid objects could cause errors, data loss, or worse. Unless someone with intimate knowledge of the code told you to be in here, you probably shouldn&rsquo;t be.
+          <div
+            class="kuiInfoPanelBody__message"
+            i18n-id="kbn.management.savedObjects.kui.intro.warning.message"
+            i18n-default-message="Modifying objects is for advanced users only. Object properties are not validated and invalid objects could cause errors, data loss, or worse. Unless someone with intimate knowledge of the code told you to be in here, you probably shouldn&rsquo;t be."
+          >
           </div>
         </div>
       </div>
@@ -146,16 +175,19 @@
           aria-label="Save {{ title }} Object"
           ng-click="submit()"
           ng-disabled="objectForm.$invalid || aceInvalidEditors.length !==0"
+          i18n-id="kbn.management.savedObjects.kui.actions.save"
+          i18n-default-message="Save { title } Object"
+          i18n-values="{ title }"
         >
-          Save {{ title }} Object
         </button>
 
         <button
           class="kuiButton kuiButton--basic"
           aria-label="Cancel"
           ng-click="cancel()"
+          i18n-id="kbn.management.savedObjects.kui.actions.cancel"
+          i18n-default-message="Cancel"
         >
-          Cancel
         </button>
       </div>
     </div>

@@ -26,9 +26,11 @@ import { SavedObjectsClientProvider } from 'ui/saved_objects';
 import { uiModules } from 'ui/modules';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
+import { ReactI18n } from '@kbn/i18n';
 import { ObjectsTable } from './components/objects_table';
 import { getInAppUrl } from './lib/get_in_app_url';
 
+const { I18nProvider, I18nContext } = ReactI18n;
 const REACT_OBJECTS_TABLE_DOM_ELEMENT_ID = 'reactSavedObjectsTable';
 
 function updateObjectsTable($scope, $injector) {
@@ -52,31 +54,45 @@ function updateObjectsTable($scope, $injector) {
     }
 
     render(
-      <ObjectsTable
-        savedObjectsClient={savedObjectsClient}
-        services={services}
-        indexPatterns={indexPatterns}
-        $http={$http}
-        perPageConfig={config.get('savedObjects:perPage')}
-        basePath={chrome.getBasePath()}
-        newIndexPatternUrl={kbnUrl.eval('#/management/kibana/index')}
-        getEditUrl={(id, type) => {
-          if (type === 'index-pattern' || type === 'indexPatterns') {
-            return kbnUrl.eval(`#/management/kibana/indices/${id}`);
-          }
-          const serviceName = typeToServiceName(type);
-          if (!serviceName) {
-            toastNotifications.addWarning(`Unknown saved object type: ${type}`);
-            return null;
-          }
+      <I18nProvider>
+        <I18nContext>
+          {
+            intl => (
+              <ObjectsTable
+                savedObjectsClient={savedObjectsClient}
+                services={services}
+                indexPatterns={indexPatterns}
+                $http={$http}
+                perPageConfig={config.get('savedObjects:perPage')}
+                basePath={chrome.getBasePath()}
+                newIndexPatternUrl={kbnUrl.eval('#/management/kibana/index')}
+                getEditUrl={(id, type) => {
+                  if (type === 'index-pattern' || type === 'indexPatterns') {
+                    return kbnUrl.eval(`#/management/kibana/indices/${id}`);
+                  }
+                  const serviceName = typeToServiceName(type);
+                  if (!serviceName) {
+                    const warning = intl.formatMessage({
+                      id: 'kbn.management.savedObjects.toastNotifications.warning.unknownType',
+                      defaultMessage: 'Unknown saved object type: {type}',
+                      values: { type },
+                    });
 
-          return kbnUrl.eval(`#/management/kibana/objects/${serviceName}/${id}`);
-        }}
-        goInApp={(id, type) => {
-          kbnUrl.change(getInAppUrl(id, type));
-          $scope.$apply();
-        }}
-      />,
+                    toastNotifications.addWarning(warning);
+                    return null;
+                  }
+
+                  return kbnUrl.eval(`#/management/kibana/objects/${serviceName}/${id}`);
+                }}
+                goInApp={(id, type) => {
+                  kbnUrl.change(getInAppUrl(id, type));
+                  $scope.$apply();
+                }}
+              />
+            )
+          }
+        </I18nContext>
+      </I18nProvider>,
       node,
     );
   });

@@ -29,7 +29,10 @@ import {
   EuiSpacer,
   EuiToolTip
 } from '@elastic/eui';
+import { ReactI18n } from '@kbn/i18n';
 import { getSavedObjectLabel, getSavedObjectIcon } from '../../../../lib';
+
+const { FormattedMessage, I18nContext } = ReactI18n;
 
 export class Table extends PureComponent {
   static propTypes = {
@@ -87,11 +90,14 @@ export class Table extends PureComponent {
       pageSizeOptions: [5, 10, 20, 50],
     };
 
-    const filters = [
+    const getFilters = intl => [
       {
         type: 'field_value_selection',
         field: 'type',
-        name: 'Type',
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.table.filters.type.name',
+          defaultMessage: 'Type'
+        }),
         multiSelect: 'or',
         options: filterOptions,
       },
@@ -99,19 +105,28 @@ export class Table extends PureComponent {
       // {
       //   type: 'field_value_selection',
       //   field: 'tag',
-      //   name: 'Tags',
+      //   name: intl.formatMessage({
+      //     id: 'kbn.management.savedObjects.table.filters.tags.name',
+      //     defaultMessage: 'Tags'
+      //   }),
       //   multiSelect: 'or',
       //   options: [],
       // },
     ];
 
-    const columns = [
+    const getColumns = intl => [
       {
         field: 'type',
-        name: 'Type',
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.table.columns.type.name',
+          defaultMessage: 'Type'
+        }),
+        description: intl.formatMessage({
+          id: 'kbn.management.savedObjects.table.columns.type.description',
+          defaultMessage: 'Type of the saved object'
+        }),
         width: '50px',
         align: 'center',
-        description: `Type of the saved object`,
         sortable: false,
         render: type => {
           return (
@@ -130,8 +145,14 @@ export class Table extends PureComponent {
       },
       {
         field: 'title',
-        name: 'Title',
-        description: `Title of the saved object`,
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.table.columns.title.name',
+          defaultMessage: 'Title'
+        }),
+        description: intl.formatMessage({
+          id: 'kbn.management.savedObjects.table.columns.title.description',
+          defaultMessage: 'Title of the saved object'
+        }),
         dataType: 'string',
         sortable: false,
         render: (title, object) => (
@@ -139,19 +160,32 @@ export class Table extends PureComponent {
         ),
       },
       {
-        name: 'Actions',
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.table.columns.actions.name',
+          defaultMessage: 'Actions'
+        }),
         actions: [
           {
-            name: 'In app',
-            description:
-              'View this saved object within Kibana',
+            name: intl.formatMessage({
+              id: 'kbn.management.savedObjects.table.columns.actions.viewObjects.name',
+              defaultMessage: 'In app'
+            }),
+            description: intl.formatMessage({
+              id: 'kbn.management.savedObjects.table.columns.actions.viewObjects.description',
+              defaultMessage: 'View this saved object within Kibana'
+            }),
             icon: 'eye',
             onClick: object => goInApp(object.id, object.type),
           },
           {
-            name: 'Relationships',
-            description:
-              'View the relationships this saved object has to other saved objects',
+            name: intl.formatMessage({
+              id: 'kbn.management.savedObjects.table.columns.actions.viewRelationships.name',
+              defaultMessage: 'Relationships'
+            }),
+            description: intl.formatMessage({
+              id: 'kbn.management.savedObjects.table.columns.actions.viewRelationships.description',
+              defaultMessage: 'View the relationships this saved object has to other saved objects'
+            }),
             icon: 'kqlSelector',
             onClick: object =>
               onShowRelationships(object.id, object.type, object.title),
@@ -161,43 +195,55 @@ export class Table extends PureComponent {
     ];
 
     return (
-      <Fragment>
-        <EuiSearchBar
-          filters={filters}
-          onChange={onQueryChange}
-          toolsRight={[
-            <EuiButton
-              key="deleteSO"
-              iconType="trash"
-              color="danger"
-              onClick={onDelete}
-              isDisabled={selectedSavedObjects.length === 0}
-            >
-              Delete
-            </EuiButton>,
-            <EuiButton
-              key="exportSO"
-              iconType="exportAction"
-              onClick={onExport}
-              isDisabled={selectedSavedObjects.length === 0}
-            >
-              Export
-            </EuiButton>,
-          ]}
-        />
-        <EuiSpacer size="s" />
-        <div data-test-subj="savedObjectsTable">
-          <EuiBasicTable
-            loading={isSearching}
-            itemId={itemId}
-            items={items}
-            columns={columns}
-            pagination={pagination}
-            selection={selection}
-            onChange={onTableChange}
-          />
-        </div>
-      </Fragment>
+      <I18nContext>
+        {
+          intl => (
+            <Fragment>
+              <EuiSearchBar
+                filters={getFilters(intl)}
+                onChange={onQueryChange}
+                toolsRight={[
+                  <EuiButton
+                    key="deleteSO"
+                    iconType="trash"
+                    color="danger"
+                    onClick={onDelete}
+                    isDisabled={selectedSavedObjects.length === 0}
+                  >
+                    <FormattedMessage
+                      id="kbn.management.savedObjects.table.controlButtons.delete"
+                      defaultMessage="Delete"
+                    />
+                  </EuiButton>,
+                  <EuiButton
+                    key="exportSO"
+                    iconType="exportAction"
+                    onClick={onExport}
+                    isDisabled={selectedSavedObjects.length === 0}
+                  >
+                    <FormattedMessage
+                      id="kbn.management.savedObjects.table.controlButtons.export"
+                      defaultMessage="Export"
+                    />
+                  </EuiButton>,
+                ]}
+              />
+              <EuiSpacer size="s" />
+              <div data-test-subj="savedObjectsTable">
+                <EuiBasicTable
+                  loading={isSearching}
+                  itemId={itemId}
+                  items={items}
+                  columns={getColumns(intl)}
+                  pagination={pagination}
+                  selection={selection}
+                  onChange={onTableChange}
+                />
+              </div>
+            </Fragment>
+          )
+        }
+      </I18nContext>
     );
   }
 }

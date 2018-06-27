@@ -41,7 +41,7 @@ uiModules.get('apps/management')
   .directive('kbnManagementObjectsView', function (kbnIndex, confirmModal) {
     return {
       restrict: 'E',
-      controller: function ($scope, $injector, $routeParams, $location, $window, $rootScope, Private) {
+      controller: function ($scope, $injector, $routeParams, $location, $window, $rootScope, Private, i18n) {
         const serviceObj = savedObjectManagementRegistry.get($routeParams.service);
         const service = $injector.get(serviceObj.service);
         const savedObjectsClient = Private(SavedObjectsClientProvider);
@@ -199,11 +199,11 @@ uiModules.get('apps/management')
           }
           const confirmModalOptions = {
             onConfirm: doDelete,
-            confirmButtonText: 'Delete',
-            title: 'Delete saved Kibana object?'
+            confirmButtonText: i18n('kbn.management.savedObjects.deleteModal.button.confirm', { defaultMessage: 'Delete' }),
+            title: i18n('kbn.management.savedObjects.deleteModal.title', { defaultMessage: 'Delete saved Kibana object?' }),
           };
           confirmModal(
-            `You can't recover deleted objects`,
+            i18n('kbn.management.savedObjects.deleteModal.confirmModal.confirm', { defaultMessage: `You can't recover deleted objects` }),
             confirmModalOptions
           );
         };

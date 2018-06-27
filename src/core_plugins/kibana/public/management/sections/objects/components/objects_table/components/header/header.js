@@ -29,6 +29,10 @@ import {
   EuiButtonEmpty,
 } from '@elastic/eui';
 
+import { ReactI18n } from '@kbn/i18n';
+
+const { FormattedMessage } = ReactI18n;
+
 export const Header = ({
   onExportAll,
   onImport,
@@ -41,12 +45,23 @@ export const Header = ({
         <EuiFlexGroup alignItems="baseline" gutterSize="m" responsive={false}>
           <EuiFlexItem grow={false}>
             <EuiTitle>
-              <h1>Saved Objects</h1>
+              <h1>
+                <FormattedMessage
+                  id="kbn.management.savedObjects.title"
+                  defaultMessage="Saved Objects"
+                />
+              </h1>
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem>
             <EuiTextColor color="subdued">
-              <p>{totalCount} in total</p>
+              <p>
+                <FormattedMessage
+                  id="kbn.management.savedObjects.count"
+                  defaultMessage="{totalCount} in total"
+                  values={{ totalCount }}
+                />
+              </p>
             </EuiTextColor>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -60,7 +75,10 @@ export const Header = ({
               data-test-subj="exportAllObjects"
               onClick={onExportAll}
             >
-              Export Everything
+              <FormattedMessage
+                id="kbn.management.savedObjects.exportEverything"
+                defaultMessage="Export Everything"
+              />
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
@@ -70,7 +88,10 @@ export const Header = ({
               data-test-subj="importObjects"
               onClick={onImport}
             >
-              Import
+              <FormattedMessage
+                id="kbn.management.savedObjects.import"
+                defaultMessage="Import"
+              />
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
@@ -79,7 +100,10 @@ export const Header = ({
               iconType="refresh"
               onClick={onRefresh}
             >
-              Refresh
+              <FormattedMessage
+                id="kbn.management.savedObjects.refresh"
+                defaultMessage="Refresh"
+              />
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -89,10 +113,14 @@ export const Header = ({
     <EuiText>
       <p>
         <EuiTextColor color="subdued">
-          From here you can delete saved objects, such as saved searches.
-          You can also edit the raw data of saved objects.
-          Typically objects are only modified via their associated application,
-          which is probably what you should use instead of this screen.
+          <FormattedMessage
+            id="kbn.management.savedObjects.description"
+            defaultMessage={`\
+From here you can delete saved objects, such as saved searches.\
+You can also edit the raw data of saved objects.\
+Typically objects are only modified via their associated application,\
+which is probably what you should use instead of this screen.`}
+          />
         </EuiTextColor>
       </p>
     </EuiText>

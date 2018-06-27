@@ -42,6 +42,7 @@ import {
   EuiSpacer,
   EuiLink,
 } from '@elastic/eui';
+import { ReactI18n } from '@kbn/i18n';
 import { importFile } from '../../../../lib/import_file';
 import {
   resolveSavedObjects,
@@ -50,6 +51,20 @@ import {
   saveObjects,
 } from '../../../../lib/resolve_saved_objects';
 import { INCLUDED_TYPES } from '../../objects_table';
+
+const { FormattedMessage, I18nContext } = ReactI18n;
+
+const errorTypes = {
+  FILE_PROCESSING_ERROR: 'FILE_PROCESSING_ERROR',
+  FILE_INVALID_FORMAT_ERROR: 'FILE_INVALID_FORMAT_ERROR',
+  SYSTEM_ERROR: 'SYSTEM_ERROR',
+};
+
+const loadingTypes = {
+  SAVING_CONFLICTS: 'SAVING_CONFLICTS',
+  RESOLVING_CONFLICTS: 'RESOLVING_CONFLICTS',
+  ENSURING_SAVED_SEARCHES: 'ENSURING_SAVED_SEARCHES',
+};
 
 export class Flyout extends Component {
   static propTypes = {
@@ -74,7 +89,7 @@ export class Flyout extends Component {
       indexPatterns: undefined,
       isOverwriteAllChecked: true,
       isLoading: false,
-      loadingMessage: undefined,
+      loadingType: undefined,
       wasImportSuccessful: false,
     };
   }
@@ -114,7 +129,9 @@ export class Flyout extends Component {
     } catch (e) {
       this.setState({
         isLoading: false,
-        error: 'The file could not be processed.',
+        error: {
+          type: errorTypes.FILE_PROCESSING_ERROR,
+        },
       });
       return;
     }
@@ -122,7 +139,9 @@ export class Flyout extends Component {
     if (!Array.isArray(contents)) {
       this.setState({
         isLoading: false,
-        error: 'Saved objects file format is invalid and cannot be imported.',
+        error: {
+          type: errorTypes.FILE_INVALID_FORMAT_ERROR,
+        },
       });
       return;
     }
@@ -205,7 +224,7 @@ export class Flyout extends Component {
     this.setState({
       error: undefined,
       isLoading: true,
-      loadingMessage: undefined,
+      loadingType: undefined,
     });
 
     let importCount = this.state.importCount;
@@ -215,7 +234,7 @@ export class Flyout extends Component {
         const resolutions = this.resolutions;
 
         // Do not Promise.all these calls as the order matters
-        this.setState({ loadingMessage: 'Resolving conflicts...' });
+        this.setState({ loadingType: loadingTypes.RESOLVING_CONFLICTS });
         if (resolutions.length) {
           importCount += await resolveIndexPatternConflicts(
             resolutions,
@@ -223,13 +242,13 @@ export class Flyout extends Component {
             isOverwriteAllChecked
           );
         }
-        this.setState({ loadingMessage: 'Saving conflicts...' });
+        this.setState({ loadingType: loadingTypes.SAVING_CONFLICTS });
         importCount += await saveObjects(
           conflictedSavedObjectsLinkedToSavedSearches,
           isOverwriteAllChecked
         );
         this.setState({
-          loadingMessage: 'Ensure saved searches are linked properly...',
+          loadingType: loadingTypes.ENSURING_SAVED_SEARCHES,
         });
         importCount += await resolveSavedSearches(
           conflictedSearchDocs,
@@ -237,11 +256,14 @@ export class Flyout extends Component {
           indexPatterns,
           isOverwriteAllChecked
         );
-      } catch (e) {
+      } catch ({ message }) {
         this.setState({
-          error: e.message,
           isLoading: false,
-          loadingMessage: undefined,
+          loadingType: undefined,
+          error: {
+            type: errorTypes.SYSTEM_ERROR,
+            message,
+          },
         });
         return;
       }
@@ -280,25 +302,43 @@ export class Flyout extends Component {
       return null;
     }
 
-    const columns = [
+    const getColumns = intl => [
       {
         field: 'existingIndexPatternId',
-        name: 'ID',
-        description: `ID of the index pattern`,
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.id.name',
+          defaultMessage: 'ID'
+        }),
+        description: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.id.description',
+          defaultMessage: 'ID of the index pattern'
+        }),
         sortable: true,
       },
       {
         field: 'list',
-        name: 'Count',
-        description: `How many affected objects`,
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.count.name',
+          defaultMessage: 'Count'
+        }),
+        description: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.count.description',
+          defaultMessage: 'How many affected objects'
+        }),
         render: list => {
           return <Fragment>{list.length}</Fragment>;
         },
       },
       {
         field: 'list',
-        name: 'Sample of affected objects',
-        description: `Sample of affected objects`,
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.affectedObjects.name',
+          defaultMessage: 'Sample of affected objects'
+        }),
+        description: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.affectedObjects.description',
+          defaultMessage: 'Sample of affected objects'
+        }),
         render: list => {
           return (
             <ul style={{ listStyle: 'none' }}>
@@ -309,17 +349,25 @@ export class Flyout extends Component {
       },
       {
         field: 'existingIndexPatternId',
-        name: 'New index pattern',
+        name: intl.formatMessage({
+          id: 'kbn.management.savedObjects.conflicts.columns.newIndex.name',
+          defaultMessage: 'New index pattern'
+        }),
         render: id => {
           const options = this.state.indexPatterns.map(indexPattern => ({
             text: indexPattern.get('title'),
             value: indexPattern.id,
           }));
 
-          options.unshift({
-            text: '-- Skip Import --',
+          const initialOption = {
+            text: intl.formatMessage({
+              id: 'kbn.management.savedObjects.conflicts.columns.newIndex.sampleText',
+              defaultMessage: '-- Skip Import --'
+            }),
             value: '',
-          });
+          };
+
+          options.unshift(initialOption);
 
           return (
             <EuiSelect
@@ -337,12 +385,45 @@ export class Flyout extends Component {
     };
 
     return (
-      <EuiInMemoryTable
-        items={conflicts}
-        columns={columns}
-        pagination={pagination}
-      />
+      <I18nContext>
+        {intl => (
+          <EuiInMemoryTable
+            items={conflicts}
+            columns={getColumns(intl)}
+            pagination={pagination}
+          />
+        )}
+      </I18nContext>
     );
+  }
+
+  renderErrorMessage(error) {
+    if (!error) {
+      return null;
+    }
+
+    const { type, message } = error;
+
+    switch (type) {
+      case errorTypes.FILE_INVALID_FORMAT_ERROR:
+        return (
+          <FormattedMessage
+            id="kbn.management.savedObjects.errors.fileInvalidFormat"
+            defaultMessage="Saved objects file format is invalid and cannot be imported."
+          />
+        );
+      case errorTypes.FILE_PROCESSING_ERROR:
+        return (
+          <FormattedMessage
+            id="kbn.management.savedObjects.errors.fileProcessing"
+            defaultMessage="The file could not be processed."
+          />
+        );
+      case errorTypes.SYSTEM_ERROR:
+        return message;
+      default:
+        return null;
+    }
   }
 
   renderError() {
@@ -355,21 +436,58 @@ export class Flyout extends Component {
     return (
       <Fragment>
         <EuiCallOut
-          title="Sorry, there was an error"
+          title={
+            <FormattedMessage
+              id="kbn.management.savedObjects.conflicts.title"
+              defaultMessage="Sorry, there was an error"
+            />
+          }
           color="danger"
           iconType="cross"
         >
-          <p>{error}</p>
+          <p>{this.renderErrorMessage(error)}</p>
         </EuiCallOut>
         <EuiSpacer size="s" />
       </Fragment>
     );
   }
 
+  renderLoadingDetails(loadingType) {
+    if (!loadingType) {
+      return null;
+    }
+
+    switch (loadingType) {
+      case loadingTypes.ENSURING_SAVED_SEARCHES:
+        return (
+          <FormattedMessage
+            id="kbn.management.savedObjects.loading.ensuringSavedSearches"
+            defaultMessage="Ensure saved searches are linked properly..."
+          />
+        );
+      case loadingTypes.RESOLVING_CONFLICTS:
+        return (
+          <FormattedMessage
+            id="kbn.management.savedObjects.loading.resolvingConflicts"
+            defaultMessage="Resolving conflicts...'"
+          />
+        );
+      case loadingTypes.SAVING_CONFLICTS:
+        return (
+          <FormattedMessage
+            id="kbn.management.savedObjects.loading.savingConflicts"
+            defaultMessage="Saving conflicts..."
+          />
+        );
+      default:
+        return null;
+    }
+  }
+
   renderBody() {
     const {
       isLoading,
-      loadingMessage,
+      loadingType,
       isOverwriteAllChecked,
       wasImportSuccessful,
       importCount,
@@ -382,7 +500,7 @@ export class Flyout extends Component {
             <EuiLoadingKibana size="xl" />
             <EuiSpacer size="m" />
             <EuiText>
-              <p>{loadingMessage}</p>
+              <p>{this.renderLoadingDetails(loadingType)}</p>
             </EuiText>
           </EuiFlexItem>
         </EuiFlexGroup>
@@ -391,8 +509,23 @@ export class Flyout extends Component {
 
     if (wasImportSuccessful) {
       return (
-        <EuiCallOut title="Import successful" color="success" iconType="check">
-          <p>Successfully imported {importCount} objects.</p>
+        <EuiCallOut
+          title={
+            <FormattedMessage
+              id="kbn.management.savedObjects.import.success.title"
+              defaultMessage="Import successful"
+            />
+          }
+          color="success"
+          iconType="check"
+        >
+          <p>
+            <FormattedMessage
+              id="kbn.management.savedObjects.import.success.details"
+              defaultMessage="Successfully imported {importCount, plural, one {object} other {objects}}."
+              values={{ importCount }}
+            />
+          </p>
         </EuiCallOut>
       );
     }
@@ -403,16 +536,33 @@ export class Flyout extends Component {
 
     return (
       <EuiForm>
-        <EuiFormRow label="Please select a JSON file to import">
+        <EuiFormRow
+          label={
+            <FormattedMessage
+              id="kbn.management.savedObjects.flyout.import.chooseFile"
+              defaultMessage="Please select a JSON file to import"
+            />
+          }
+        >
           <EuiFilePicker
-            initialPromptText="Import"
+            initialPromptText={
+              <FormattedMessage
+                id="kbn.management.savedObjects.flyout.import.importFile"
+                defaultMessage="Import"
+              />
+            }
             onChange={this.setImportFile}
           />
         </EuiFormRow>
         <EuiFormRow>
           <EuiSwitch
             name="overwriteAll"
-            label="Automatically overwrite all saved objects?"
+            label={
+              <FormattedMessage
+                id="kbn.management.savedObjects.flyout.import.overwrite"
+                defaultMessage="Automatically overwrite all saved objects?"
+              />
+            }
             data-test-subj="importSavedObjectsOverwriteToggle"
             checked={isOverwriteAllChecked}
             onChange={this.changeOverwriteAll}
@@ -436,7 +586,10 @@ export class Flyout extends Component {
           fill
           data-test-subj="importSavedObjectsDoneBtn"
         >
-          Done
+          <FormattedMessage
+            id="kbn.management.savedObjects.flyout.import.done"
+            defaultMessage="Done"
+          />
         </EuiButton>
       );
     } else if (this.hasConflicts) {
@@ -448,7 +601,10 @@ export class Flyout extends Component {
           isLoading={isLoading}
           data-test-subj="importSavedObjectsConfirmBtn"
         >
-          Confirm all changes
+          <FormattedMessage
+            id="kbn.management.savedObjects.flyout.import.confirmChanges"
+            defaultMessage="Confirm all changes"
+          />
         </EuiButton>
       );
     } else {
@@ -460,7 +616,10 @@ export class Flyout extends Component {
           isLoading={isLoading}
           data-test-subj="importSavedObjectsImportBtn"
         >
-          Import
+          <FormattedMessage
+            id="kbn.management.savedObjects.flyout.import.confirm"
+            defaultMessage="Import"
+          />
         </EuiButton>
       );
     }
@@ -469,7 +628,10 @@ export class Flyout extends Component {
       <EuiFlexGroup justifyContent="spaceBetween">
         <EuiFlexItem grow={false}>
           <EuiButtonEmpty onClick={close} size="s">
-            Cancel
+            <FormattedMessage
+              id="kbn.management.savedObjects.flyout.import.cancel"
+              defaultMessage="Cancel"
+            />
           </EuiButtonEmpty>
         </EuiFlexItem>
         <EuiFlexItem grow={false}>{confirmButton}</EuiFlexItem>
@@ -490,20 +652,32 @@ export class Flyout extends Component {
       <Fragment>
         <EuiSpacer size="s" />
         <EuiCallOut
-          title="Index Pattern Conflicts"
+          title={<FormattedMessage
+            id="kbn.management.savedObjects.flyout.conflicts.description.title"
+            defaultMessage="Index Pattern Conflicts"
+          />}
           color="warning"
           iconType="help"
         >
           <p>
-            The following saved objects use index patterns that do not exist.
-            Please select the index patterns you&apos;d like re-associated with
-            them. You can{' '}
-            {
-              <EuiLink href={this.props.newIndexPatternUrl}>
-                create a new index pattern
-              </EuiLink>
-            }{' '}
-            if necessary.
+            <FormattedMessage
+              id="kbn.management.savedObjects.flyout.conflicts.description.details"
+              defaultMessage={`\
+The following saved objects use index patterns that do not exist. \
+Please select the index patterns you&apos;d like re-associated with \
+them. You can {newIndexPatternLinkTitle} if necessary.
+              `}
+              values={{
+                newIndexPatternLinkTitle: (
+                  <EuiLink href={this.props.newIndexPatternUrl}>
+                    <FormattedMessage
+                      id="kbn.management.savedObjects.flyout.conflicts.description.linkTitle"
+                      defaultMessage="create a new index pattern"
+                    />
+                  </EuiLink>
+                ),
+              }}
+            />
           </p>
         </EuiCallOut>
       </Fragment>
@@ -517,7 +691,12 @@ export class Flyout extends Component {
       <EuiFlyout onClose={close}>
         <EuiFlyoutHeader>
           <EuiTitle>
-            <h2>Import saved objects</h2>
+            <h2>
+              <FormattedMessage
+                id="kbn.management.savedObjects.flyout.title"
+                defaultMessage="Import saved objects"
+              />
+            </h2>
           </EuiTitle>
           {this.renderSubheader()}
         </EuiFlyoutHeader>
